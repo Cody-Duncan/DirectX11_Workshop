@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="DirectX_GraphicsDevice.cpp" />
+    <ClCompile Include="DirectX_PrimitiveBatch.cpp" />
+    <ClCompile Include="DirectX_SpriteBatch.cpp" />
+    <ClCompile Include="GraphicsDevice.cpp" />
+    <ClCompile Include="Driver.cpp" />
+    <ClCompile Include="InputState.cpp" />
+    <ClCompile Include="WindowSystem.cpp" />
+    <ClCompile Include="OSHighResTimer.cpp">
+      <Filter>Timer</Filter>
+    </ClCompile>
+    <ClCompile Include="Stopwatch.cpp">
+      <Filter>Timer</Filter>
+    </ClCompile>
+    <ClCompile Include="DebugOutput.cpp">
+      <Filter>Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="WindowInputInitializer.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="DirectX_GraphicsDevice.h" />
+    <ClInclude Include="DirectX_PrimitiveBatch.h" />
+    <ClInclude Include="DirectX_SpriteBatch.h" />
+    <ClInclude Include="GraphicsDevice.h" />
+    <ClInclude Include="InputState.h" />
+    <ClInclude Include="WindowSystem.h" />
+    <ClInclude Include="OSHighResTimer.h">
+      <Filter>Timer</Filter>
+    </ClInclude>
+    <ClInclude Include="Stopwatch.h">
+      <Filter>Timer</Filter>
+    </ClInclude>
+    <ClInclude Include="DebugOutput.h">
+      <Filter>Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="WindowGlobals.h" />
+    <ClInclude Include="SimpleMath.h">
+      <Filter>SimpleMath</Filter>
+    </ClInclude>
+    <ClInclude Include="WindowInputInitializer.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Debug">
+      <UniqueIdentifier>{d0790728-4962-404c-bfb8-085357975f1b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Window">
+      <UniqueIdentifier>{e1016597-d13f-42c8-b4fb-ae53c6dea034}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GraphicsAPI">
+      <UniqueIdentifier>{827083d4-d21e-46ab-9a1a-b31cd8a26c48}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics">
+      <UniqueIdentifier>{122367c5-2397-427c-927a-e8bfa142bcc9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Timer">
+      <UniqueIdentifier>{0371a1ad-feb6-4cd9-a450-663efa8a84ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SimpleMath">
+      <UniqueIdentifier>{ff874bfd-30ab-40ae-9702-c20a5fc74af7}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="SimpleMath.inl">
+      <Filter>SimpleMath</Filter>
+    </None>
+  </ItemGroup>
+</Project>

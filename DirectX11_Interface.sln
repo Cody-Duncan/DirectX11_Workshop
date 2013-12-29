@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DirectX11_Interface", "DirectX11_Interface.vcxproj", "{7A32AAF5-2C56-4CCB-9187-2D83D9D10F5A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7A32AAF5-2C56-4CCB-9187-2D83D9D10F5A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{7A32AAF5-2C56-4CCB-9187-2D83D9D10F5A}.Debug|Win32.Build.0 = Debug|Win32
+		{7A32AAF5-2C56-4CCB-9187-2D83D9D10F5A}.Release|Win32.ActiveCfg = Release|Win32
+		{7A32AAF5-2C56-4CCB-9187-2D83D9D10F5A}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
