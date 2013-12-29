@@ -1,4 +1,4 @@
-#include "stdafx.h"
+
 #include "DirectX_SpriteBatch.h"
 #include "Resources.h"
 #include "FileResourcer.h"

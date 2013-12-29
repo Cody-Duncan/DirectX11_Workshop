@@ -1,15 +1,11 @@
 #pragma once
 
-#include "SimpleMath.h"
 #include <string>
+
+#include "SimpleMath.h"
+#include "DeviceAPI.h"
 #include "Vertex.h"
 
-
-enum DeviceAPI
-{
-    DirectX,
-    OpenGL
-};
 
 class GraphicsDevice
 {

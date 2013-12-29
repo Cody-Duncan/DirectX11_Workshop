@@ -1,13 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="DirectX_GraphicsDevice.cpp" />
-    <ClCompile Include="DirectX_PrimitiveBatch.cpp" />
-    <ClCompile Include="DirectX_SpriteBatch.cpp" />
-    <ClCompile Include="GraphicsDevice.cpp" />
     <ClCompile Include="Driver.cpp" />
-    <ClCompile Include="InputState.cpp" />
-    <ClCompile Include="WindowSystem.cpp" />
     <ClCompile Include="OSHighResTimer.cpp">
       <Filter>Timer</Filter>
     </ClCompile>
@@ -17,15 +11,35 @@
     <ClCompile Include="DebugOutput.cpp">
       <Filter>Debug</Filter>
     </ClCompile>
-    <ClCompile Include="WindowInputInitializer.cpp" />
+    <ClCompile Include="WindowSystem.cpp">
+      <Filter>WindowAndInput</Filter>
+    </ClCompile>
+    <ClCompile Include="WindowInputInitializer.cpp">
+      <Filter>WindowAndInput</Filter>
+    </ClCompile>
+    <ClCompile Include="RunningState.cpp">
+      <Filter>WindowAndInput</Filter>
+    </ClCompile>
+    <ClCompile Include="InputState.cpp">
+      <Filter>WindowAndInput</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectX_GraphicsDevice.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectX_PrimitiveBatch.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectX_SpriteBatch.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphicsDevice.cpp">
+      <Filter>GraphicsAPI</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteBatch.cpp">
+      <Filter>GraphicsAPI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="DirectX_GraphicsDevice.h" />
-    <ClInclude Include="DirectX_PrimitiveBatch.h" />
-    <ClInclude Include="DirectX_SpriteBatch.h" />
-    <ClInclude Include="GraphicsDevice.h" />
-    <ClInclude Include="InputState.h" />
-    <ClInclude Include="WindowSystem.h" />
     <ClInclude Include="OSHighResTimer.h">
       <Filter>Timer</Filter>
     </ClInclude>
@@ -35,18 +49,55 @@
     <ClInclude Include="DebugOutput.h">
       <Filter>Debug</Filter>
     </ClInclude>
-    <ClInclude Include="WindowGlobals.h" />
     <ClInclude Include="SimpleMath.h">
       <Filter>SimpleMath</Filter>
     </ClInclude>
-    <ClInclude Include="WindowInputInitializer.h" />
+    <ClInclude Include="WindowSystem.h">
+      <Filter>WindowAndInput</Filter>
+    </ClInclude>
+    <ClInclude Include="WindowInputInitializer.h">
+      <Filter>WindowAndInput</Filter>
+    </ClInclude>
+    <ClInclude Include="WindowGlobals.h">
+      <Filter>WindowAndInput</Filter>
+    </ClInclude>
+    <ClInclude Include="RunningState.h">
+      <Filter>WindowAndInput</Filter>
+    </ClInclude>
+    <ClInclude Include="InputState.h">
+      <Filter>WindowAndInput</Filter>
+    </ClInclude>
+    <ClInclude Include="Debug_Graphics.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectX_GraphicsDevice.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectX_PrimitiveBatch.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectX_SpriteBatch.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphicsDevice.h">
+      <Filter>GraphicsAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="Vertex.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteBatch.h">
+      <Filter>GraphicsAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="PrimitiveBatch.h">
+      <Filter>GraphicsAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="DeviceAPI.h">
+      <Filter>GraphicsAPI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Debug">
       <UniqueIdentifier>{d0790728-4962-404c-bfb8-085357975f1b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Window">
-      <UniqueIdentifier>{e1016597-d13f-42c8-b4fb-ae53c6dea034}</UniqueIdentifier>
     </Filter>
     <Filter Include="GraphicsAPI">
       <UniqueIdentifier>{827083d4-d21e-46ab-9a1a-b31cd8a26c48}</UniqueIdentifier>
@@ -59,6 +110,9 @@
     </Filter>
     <Filter Include="SimpleMath">
       <UniqueIdentifier>{ff874bfd-30ab-40ae-9702-c20a5fc74af7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="WindowAndInput">
+      <UniqueIdentifier>{e1016597-d13f-42c8-b4fb-ae53c6dea034}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

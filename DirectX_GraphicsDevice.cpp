@@ -13,7 +13,7 @@
 #include "Resources.h"
 
 DirectX_GraphicsDevice::DirectX_GraphicsDevice(void) : 
-    GraphicsDevice(DeviceAPI::DirectX11),
+    GraphicsDevice(DeviceAPI::DirectX_Device),
     driverType(D3D_DRIVER_TYPE_HARDWARE), 
     featureLevel(D3D_FEATURE_LEVEL_11_0),
     device(NULL),

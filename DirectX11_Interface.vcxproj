@@ -84,20 +84,28 @@
     <ClCompile Include="GraphicsDevice.cpp" />
     <ClCompile Include="InputState.cpp" />
     <ClCompile Include="OSHighResTimer.cpp" />
+    <ClCompile Include="RunningState.cpp" />
+    <ClCompile Include="SpriteBatch.cpp" />
     <ClCompile Include="Stopwatch.cpp" />
     <ClCompile Include="WindowInputInitializer.cpp" />
     <ClCompile Include="WindowSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DebugOutput.h" />
+    <ClInclude Include="Debug_Graphics.h" />
+    <ClInclude Include="DeviceAPI.h" />
     <ClInclude Include="DirectX_GraphicsDevice.h" />
     <ClInclude Include="DirectX_PrimitiveBatch.h" />
     <ClInclude Include="DirectX_SpriteBatch.h" />
     <ClInclude Include="GraphicsDevice.h" />
     <ClInclude Include="InputState.h" />
     <ClInclude Include="OSHighResTimer.h" />
+    <ClInclude Include="PrimitiveBatch.h" />
+    <ClInclude Include="RunningState.h" />
     <ClInclude Include="SimpleMath.h" />
+    <ClInclude Include="SpriteBatch.h" />
     <ClInclude Include="Stopwatch.h" />
+    <ClInclude Include="Vertex.h" />
     <ClInclude Include="WindowGlobals.h" />
     <ClInclude Include="WindowInputInitializer.h" />
     <ClInclude Include="WindowSystem.h" />
