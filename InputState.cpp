@@ -76,8 +76,8 @@ void InputState::updateKey(UINT msg, WPARAM wParam, LPARAM lParam)
 
 void InputState::UpdateMousePos(LPARAM lParam)
 {
-    MousePositionNowX  = (float)GET_X_LPARAM(lParam); 
-    MousePositionNowY = (float)GET_Y_LPARAM(lParam);
+    MousePositionNowX  = GET_X_LPARAM(lParam); 
+    MousePositionNowY = GET_Y_LPARAM(lParam);
 }
 
 /// <summary>

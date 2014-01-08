@@ -38,6 +38,9 @@
     <ClCompile Include="SpriteBatch.cpp">
       <Filter>GraphicsAPI</Filter>
     </ClCompile>
+    <ClCompile Include="BufferResourcer.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="OSHighResTimer.h">
@@ -94,6 +97,12 @@
     <ClInclude Include="DeviceAPI.h">
       <Filter>GraphicsAPI</Filter>
     </ClInclude>
+    <ClInclude Include="ConstantBuffer.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="BufferResourcer.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Debug">
@@ -113,6 +122,9 @@
     </Filter>
     <Filter Include="WindowAndInput">
       <UniqueIdentifier>{e1016597-d13f-42c8-b4fb-ae53c6dea034}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources">
+      <UniqueIdentifier>{8350978f-6f99-42d2-a62a-e0db1279d1ab}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

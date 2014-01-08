@@ -1,10 +1,9 @@
 #pragma once
 
-
+#include "SimpleMath.h"
 #include "DeviceAPI.h"
-#include "GraphicsResourceHandles.h"
 
-class ST_API SpriteBatch
+class SpriteBatch
 {
 public:
     SpriteBatch();

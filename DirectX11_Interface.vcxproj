@@ -76,6 +76,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BufferResourcer.cpp" />
     <ClCompile Include="DebugOutput.cpp" />
     <ClCompile Include="DirectX_GraphicsDevice.cpp" />
     <ClCompile Include="DirectX_PrimitiveBatch.cpp" />
@@ -91,6 +92,8 @@
     <ClCompile Include="WindowSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BufferResourcer.h" />
+    <ClInclude Include="ConstantBuffer.h" />
     <ClInclude Include="DebugOutput.h" />
     <ClInclude Include="Debug_Graphics.h" />
     <ClInclude Include="DeviceAPI.h" />

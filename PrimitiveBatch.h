@@ -1,7 +1,6 @@
 #pragma once
 
 #include "DeviceAPI.h"
-#include "GraphicsResourceHandles.h"
 
 enum PrimitiveType
 {
