@@ -3,11 +3,7 @@
 #include "graphicsdevice.h"
 #include "SimpleMath.h"
 
-#include "BufferResourcer.h"
 #include "ConstantBuffer.h"
-#include "TextureResourcer.h"
-#include "ShaderResourcer.h"
-#include "GraphicsResourceHandles.h"
 
 #include "Mesh.h"
 

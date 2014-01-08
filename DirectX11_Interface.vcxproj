@@ -91,6 +91,7 @@
     <ClCompile Include="WindowSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ConstantBuffer.h" />
     <ClInclude Include="DebugOutput.h" />
     <ClInclude Include="Debug_Graphics.h" />
     <ClInclude Include="DeviceAPI.h" />

@@ -94,6 +94,9 @@
     <ClInclude Include="DeviceAPI.h">
       <Filter>GraphicsAPI</Filter>
     </ClInclude>
+    <ClInclude Include="ConstantBuffer.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Debug">
