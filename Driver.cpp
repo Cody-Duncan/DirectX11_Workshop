@@ -1,6 +1,6 @@
 #include <Windows.h>
-#include "WindowInputInitializer.h"
-#include "RunningState.h"
+#include "WindowInput\WindowInputInitializer.h"
+#include "WindowInput\RunningState.h"
 
 int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nShowCmd )
 {

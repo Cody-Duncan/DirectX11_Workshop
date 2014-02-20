@@ -52,6 +52,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -76,45 +77,45 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="BufferResourcer.cpp" />
-    <ClCompile Include="DebugOutput.cpp" />
-    <ClCompile Include="DirectX_GraphicsDevice.cpp" />
-    <ClCompile Include="DirectX_PrimitiveBatch.cpp" />
-    <ClCompile Include="DirectX_SpriteBatch.cpp" />
+    <ClCompile Include="Debugging\DebugOutput.cpp" />
     <ClCompile Include="Driver.cpp" />
-    <ClCompile Include="GraphicsDevice.cpp" />
-    <ClCompile Include="InputState.cpp" />
-    <ClCompile Include="OSHighResTimer.cpp" />
-    <ClCompile Include="RunningState.cpp" />
-    <ClCompile Include="SpriteBatch.cpp" />
-    <ClCompile Include="Stopwatch.cpp" />
-    <ClCompile Include="WindowInputInitializer.cpp" />
-    <ClCompile Include="WindowSystem.cpp" />
+    <ClCompile Include="GraphicsAPI\GraphicsDevice.cpp" />
+    <ClCompile Include="GraphicsAPI\SpriteBatch.cpp" />
+    <ClCompile Include="Graphics\BufferResourcer.cpp" />
+    <ClCompile Include="Graphics\DirectX_GraphicsDevice.cpp" />
+    <ClCompile Include="Graphics\DirectX_PrimitiveBatch.cpp" />
+    <ClCompile Include="Graphics\DirectX_SpriteBatch.cpp" />
+    <ClCompile Include="Timer\OSHighResTimer.cpp" />
+    <ClCompile Include="Timer\Stopwatch.cpp" />
+    <ClCompile Include="WindowInput\InputState.cpp" />
+    <ClCompile Include="WindowInput\RunningState.cpp" />
+    <ClCompile Include="WindowInput\WindowInputInitializer.cpp" />
+    <ClCompile Include="WindowInput\WindowSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BufferResourcer.h" />
-    <ClInclude Include="ConstantBuffer.h" />
-    <ClInclude Include="DebugOutput.h" />
-    <ClInclude Include="Debug_Graphics.h" />
-    <ClInclude Include="DeviceAPI.h" />
-    <ClInclude Include="DirectX_GraphicsDevice.h" />
-    <ClInclude Include="DirectX_PrimitiveBatch.h" />
-    <ClInclude Include="DirectX_SpriteBatch.h" />
-    <ClInclude Include="GraphicsDevice.h" />
-    <ClInclude Include="InputState.h" />
-    <ClInclude Include="OSHighResTimer.h" />
-    <ClInclude Include="PrimitiveBatch.h" />
-    <ClInclude Include="RunningState.h" />
-    <ClInclude Include="SimpleMath.h" />
-    <ClInclude Include="SpriteBatch.h" />
-    <ClInclude Include="Stopwatch.h" />
-    <ClInclude Include="Vertex.h" />
-    <ClInclude Include="WindowGlobals.h" />
-    <ClInclude Include="WindowInputInitializer.h" />
-    <ClInclude Include="WindowSystem.h" />
+    <ClInclude Include="Debugging\DebugOutput.h" />
+    <ClInclude Include="GraphicsAPI\DeviceAPI.h" />
+    <ClInclude Include="GraphicsAPI\GraphicsDevice.h" />
+    <ClInclude Include="GraphicsAPI\PrimitiveBatch.h" />
+    <ClInclude Include="GraphicsAPI\SpriteBatch.h" />
+    <ClInclude Include="Graphics\BufferResourcer.h" />
+    <ClInclude Include="Graphics\ConstantBuffer.h" />
+    <ClInclude Include="Graphics\Debug_Graphics.h" />
+    <ClInclude Include="Graphics\DirectX_GraphicsDevice.h" />
+    <ClInclude Include="Graphics\DirectX_PrimitiveBatch.h" />
+    <ClInclude Include="Graphics\DirectX_SpriteBatch.h" />
+    <ClInclude Include="Graphics\Vertex.h" />
+    <ClInclude Include="SimpleMath\SimpleMath.h" />
+    <ClInclude Include="Timer\OSHighResTimer.h" />
+    <ClInclude Include="Timer\Stopwatch.h" />
+    <ClInclude Include="WindowInput\InputState.h" />
+    <ClInclude Include="WindowInput\RunningState.h" />
+    <ClInclude Include="WindowInput\WindowGlobals.h" />
+    <ClInclude Include="WindowInput\WindowInputInitializer.h" />
+    <ClInclude Include="WindowInput\WindowSystem.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="SimpleMath.inl" />
+    <None Include="SimpleMath\SimpleMath.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -2,107 +2,45 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="Driver.cpp" />
-    <ClCompile Include="OSHighResTimer.cpp">
-      <Filter>Timer</Filter>
-    </ClCompile>
-    <ClCompile Include="Stopwatch.cpp">
-      <Filter>Timer</Filter>
-    </ClCompile>
-    <ClCompile Include="DebugOutput.cpp">
+    <ClCompile Include="Debugging\DebugOutput.cpp">
       <Filter>Debug</Filter>
     </ClCompile>
-    <ClCompile Include="WindowSystem.cpp">
-      <Filter>WindowAndInput</Filter>
-    </ClCompile>
-    <ClCompile Include="WindowInputInitializer.cpp">
-      <Filter>WindowAndInput</Filter>
-    </ClCompile>
-    <ClCompile Include="RunningState.cpp">
-      <Filter>WindowAndInput</Filter>
-    </ClCompile>
-    <ClCompile Include="InputState.cpp">
-      <Filter>WindowAndInput</Filter>
-    </ClCompile>
-    <ClCompile Include="DirectX_GraphicsDevice.cpp">
+    <ClCompile Include="Graphics\DirectX_GraphicsDevice.cpp">
       <Filter>Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="DirectX_PrimitiveBatch.cpp">
+    <ClCompile Include="Graphics\DirectX_PrimitiveBatch.cpp">
       <Filter>Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="DirectX_SpriteBatch.cpp">
+    <ClCompile Include="Graphics\DirectX_SpriteBatch.cpp">
       <Filter>Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="GraphicsDevice.cpp">
+    <ClCompile Include="GraphicsAPI\GraphicsDevice.cpp">
       <Filter>GraphicsAPI</Filter>
     </ClCompile>
-    <ClCompile Include="SpriteBatch.cpp">
+    <ClCompile Include="GraphicsAPI\SpriteBatch.cpp">
       <Filter>GraphicsAPI</Filter>
     </ClCompile>
-    <ClCompile Include="BufferResourcer.cpp">
-      <Filter>Resources</Filter>
+    <ClCompile Include="Graphics\BufferResourcer.cpp">
+      <Filter>Graphics</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="OSHighResTimer.h">
+    <ClCompile Include="Timer\OSHighResTimer.cpp">
       <Filter>Timer</Filter>
-    </ClInclude>
-    <ClInclude Include="Stopwatch.h">
+    </ClCompile>
+    <ClCompile Include="Timer\Stopwatch.cpp">
       <Filter>Timer</Filter>
-    </ClInclude>
-    <ClInclude Include="DebugOutput.h">
-      <Filter>Debug</Filter>
-    </ClInclude>
-    <ClInclude Include="SimpleMath.h">
-      <Filter>SimpleMath</Filter>
-    </ClInclude>
-    <ClInclude Include="WindowSystem.h">
+    </ClCompile>
+    <ClCompile Include="WindowInput\InputState.cpp">
       <Filter>WindowAndInput</Filter>
-    </ClInclude>
-    <ClInclude Include="WindowInputInitializer.h">
+    </ClCompile>
+    <ClCompile Include="WindowInput\RunningState.cpp">
       <Filter>WindowAndInput</Filter>
-    </ClInclude>
-    <ClInclude Include="WindowGlobals.h">
+    </ClCompile>
+    <ClCompile Include="WindowInput\WindowInputInitializer.cpp">
       <Filter>WindowAndInput</Filter>
-    </ClInclude>
-    <ClInclude Include="RunningState.h">
+    </ClCompile>
+    <ClCompile Include="WindowInput\WindowSystem.cpp">
       <Filter>WindowAndInput</Filter>
-    </ClInclude>
-    <ClInclude Include="InputState.h">
-      <Filter>WindowAndInput</Filter>
-    </ClInclude>
-    <ClInclude Include="Debug_Graphics.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="DirectX_GraphicsDevice.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="DirectX_PrimitiveBatch.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="DirectX_SpriteBatch.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="GraphicsDevice.h">
-      <Filter>GraphicsAPI</Filter>
-    </ClInclude>
-    <ClInclude Include="Vertex.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="SpriteBatch.h">
-      <Filter>GraphicsAPI</Filter>
-    </ClInclude>
-    <ClInclude Include="PrimitiveBatch.h">
-      <Filter>GraphicsAPI</Filter>
-    </ClInclude>
-    <ClInclude Include="DeviceAPI.h">
-      <Filter>GraphicsAPI</Filter>
-    </ClInclude>
-    <ClInclude Include="ConstantBuffer.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="BufferResourcer.h">
-      <Filter>Resources</Filter>
-    </ClInclude>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Debug">
@@ -123,12 +61,71 @@
     <Filter Include="WindowAndInput">
       <UniqueIdentifier>{e1016597-d13f-42c8-b4fb-ae53c6dea034}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resources">
-      <UniqueIdentifier>{8350978f-6f99-42d2-a62a-e0db1279d1ab}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="SimpleMath.inl">
+    <ClInclude Include="Debugging\DebugOutput.h">
+      <Filter>Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\ConstantBuffer.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Debug_Graphics.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\DirectX_GraphicsDevice.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\DirectX_PrimitiveBatch.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\DirectX_SpriteBatch.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Vertex.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphicsAPI\DeviceAPI.h">
+      <Filter>GraphicsAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphicsAPI\GraphicsDevice.h">
+      <Filter>GraphicsAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphicsAPI\PrimitiveBatch.h">
+      <Filter>GraphicsAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphicsAPI\SpriteBatch.h">
+      <Filter>GraphicsAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="SimpleMath\SimpleMath.h">
+      <Filter>SimpleMath</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\BufferResourcer.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Timer\OSHighResTimer.h">
+      <Filter>Timer</Filter>
+    </ClInclude>
+    <ClInclude Include="Timer\Stopwatch.h">
+      <Filter>Timer</Filter>
+    </ClInclude>
+    <ClInclude Include="WindowInput\InputState.h">
+      <Filter>WindowAndInput</Filter>
+    </ClInclude>
+    <ClInclude Include="WindowInput\RunningState.h">
+      <Filter>WindowAndInput</Filter>
+    </ClInclude>
+    <ClInclude Include="WindowInput\WindowGlobals.h">
+      <Filter>WindowAndInput</Filter>
+    </ClInclude>
+    <ClInclude Include="WindowInput\WindowInputInitializer.h">
+      <Filter>WindowAndInput</Filter>
+    </ClInclude>
+    <ClInclude Include="WindowInput\WindowSystem.h">
+      <Filter>WindowAndInput</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="SimpleMath\SimpleMath.inl">
       <Filter>SimpleMath</Filter>
     </None>
   </ItemGroup>
