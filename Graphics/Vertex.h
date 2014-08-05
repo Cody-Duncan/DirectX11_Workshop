@@ -1,5 +1,4 @@
 
-#include "SimpleMath\SimpleMath.h"
 
 #ifndef VERTEX_STRUCT
 #define VERTEX_STRUCT

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -19,13 +19,13 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -41,71 +41,78 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <TargetName>$(ProjectName)d</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
+      <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(ProjectDir)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)include</AdditionalIncludeDirectories>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <ForcedIncludeFiles>pch.h</ForcedIncludeFiles>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(ProjectDir)lib\DXTK_Lib\x86</AdditionalLibraryDirectories>
+      <AdditionalDependencies>d2d1.lib;d3d11.lib;dxgi.lib;windowscodecs.lib;dwrite.lib;DirectXTKd.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
+      <PrecompiledHeader>Use</PrecompiledHeader>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)include</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>pch.h</ForcedIncludeFiles>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>$(ProjectDir)lib\DXTK_Lib\x86</AdditionalLibraryDirectories>
+      <AdditionalDependencies>DirectXTK.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Debugging\Assert.cpp" />
     <ClCompile Include="Debugging\DebugOutput.cpp" />
+    <ClCompile Include="Debugging\pempek_assert.cpp" />
     <ClCompile Include="Driver.cpp" />
-    <ClCompile Include="GraphicsAPI\GraphicsDevice.cpp" />
-    <ClCompile Include="GraphicsAPI\SpriteBatch.cpp" />
-    <ClCompile Include="Graphics\BufferResourcer.cpp" />
     <ClCompile Include="Graphics\DirectX_GraphicsDevice.cpp" />
-    <ClCompile Include="Graphics\DirectX_PrimitiveBatch.cpp" />
-    <ClCompile Include="Graphics\DirectX_SpriteBatch.cpp" />
+    <ClCompile Include="pch.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </ForcedIncludeFiles>
+    </ClCompile>
     <ClCompile Include="Timer\OSHighResTimer.cpp" />
     <ClCompile Include="Timer\Stopwatch.cpp" />
+    <ClCompile Include="WindowGlobals.cpp" />
     <ClCompile Include="WindowInput\InputState.cpp" />
     <ClCompile Include="WindowInput\RunningState.cpp" />
     <ClCompile Include="WindowInput\WindowInputInitializer.cpp" />
     <ClCompile Include="WindowInput\WindowSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Debugging\Assert.h" />
+    <ClInclude Include="Debugging\AssertErrorLogFile.h" />
     <ClInclude Include="Debugging\DebugOutput.h" />
-    <ClInclude Include="GraphicsAPI\DeviceAPI.h" />
-    <ClInclude Include="GraphicsAPI\GraphicsDevice.h" />
-    <ClInclude Include="GraphicsAPI\PrimitiveBatch.h" />
-    <ClInclude Include="GraphicsAPI\SpriteBatch.h" />
-    <ClInclude Include="Graphics\BufferResourcer.h" />
+    <ClInclude Include="Debugging\pempek_assert.h" />
     <ClInclude Include="Graphics\ConstantBuffer.h" />
     <ClInclude Include="Graphics\Debug_Graphics.h" />
     <ClInclude Include="Graphics\DirectX_GraphicsDevice.h" />
-    <ClInclude Include="Graphics\DirectX_PrimitiveBatch.h" />
-    <ClInclude Include="Graphics\DirectX_SpriteBatch.h" />
     <ClInclude Include="Graphics\Vertex.h" />
-    <ClInclude Include="SimpleMath\SimpleMath.h" />
+    <ClInclude Include="pch.h" />
     <ClInclude Include="Timer\OSHighResTimer.h" />
     <ClInclude Include="Timer\Stopwatch.h" />
     <ClInclude Include="WindowInput\InputState.h" />
@@ -113,9 +120,6 @@
     <ClInclude Include="WindowInput\WindowGlobals.h" />
     <ClInclude Include="WindowInput\WindowInputInitializer.h" />
     <ClInclude Include="WindowInput\WindowSystem.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="SimpleMath\SimpleMath.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,5 +1,5 @@
 #include "DirectX_GraphicsDevice.h"
-#include "WindowGlobals.h"          //ghMainWnd
+#include "WindowInput\WindowGlobals.h"          //ghMainWnd
 
 #include <assert.h>
 #include <d3dcompiler.h>
@@ -8,12 +8,8 @@
 #include <sstream>
 #include "Vertex.h"
 #include "Debug_Graphics.h"
-#include "MeshResourcer.h"
-#include "Mesh.h"
-#include "Resources.h"
 
 DirectX_GraphicsDevice::DirectX_GraphicsDevice(void) : 
-    GraphicsDevice(DeviceAPI::DirectX_Device),
     driverType(D3D_DRIVER_TYPE_HARDWARE), 
     featureLevel(D3D_FEATURE_LEVEL_11_0),
     device(NULL),
@@ -47,10 +43,6 @@ void DirectX_GraphicsDevice::Free()
 {
     //clear states
     if( deviceContext ) deviceContext->ClearState();
-
-    ShaderResourcer::Instance().Dispose();
-    BufferResourcer::Instance().Dispose();
-    TextureResourcer::Instance().Dispose();
 
     if(blendNone) blendNone->Release();
     if(blendAlpha) blendAlpha->Release();
@@ -117,7 +109,7 @@ int DirectX_GraphicsDevice::Init()
     hr = device->CheckMultisampleQualityLevels(DXGI_FORMAT_R8G8B8A8_UNORM, 4, &m4xMsaaQuality);
     CHECKHR(hr, "FAILED: Error Checking Multi Sample Quality Levels. \n") 
 
-    DebugAssert( m4xMsaaQuality > 0, "M4xMsaaQuality is 0, Multisampling with the given format and sample count combination is not supported for the installed graphics adapter.");
+    ASSERT_DEBUG( m4xMsaaQuality > 0, "M4xMsaaQuality is 0, Multisampling with the given format and sample count combination is not supported for the installed graphics adapter.");
 
     
 
@@ -202,9 +194,9 @@ int DirectX_GraphicsDevice::Init()
 
 int DirectX_GraphicsDevice::OnResize()
 {
-    DebugAssert(deviceContext, "Device Context is null.");
-    DebugAssert(device, "Device is null. How did that happen?");
-    DebugAssert(swapChain, "Swap chain is null. This is really bad.");
+    ASSERT_DEBUG(deviceContext, "Device Context is null.");
+    ASSERT_DEBUG(device, "Device is null. How did that happen?");
+    ASSERT_DEBUG(swapChain, "Swap chain is null. This is really bad.");
 
     HRESULT hr = S_OK;
     
@@ -379,23 +371,23 @@ void DirectX_GraphicsDevice::clearRenderTarget()
 void DirectX_GraphicsDevice::BeginDraw()
 {
     using namespace DirectX;
-    DebugAssert(deviceContext, "Device Context is null.");
-    DebugAssert(swapChain, "Swap chain is null. This is really bad.");
+    ASSERT_DEBUG(deviceContext, "Device Context is null.");
+    ASSERT_DEBUG(swapChain, "Swap chain is null. This is really bad.");
 
     //set shaders and resources
-    vertexShader = ShaderResourcer::Instance().getVertexShader(toDraw_vertexShader);
+   /* vertexShader = ShaderResourcer::Instance().getVertexShader(toDraw_vertexShader);
     pixelShader  = ShaderResourcer::Instance().getPixelShader(toDraw_pixelShader);
     inputLayout = ShaderResourcer::Instance().getInputLayout(toDraw_vertexShader);
-    constantBuffer = ShaderResourcer::Instance().getConstantBuffer(toDraw_vertexShader);
+    constantBuffer = ShaderResourcer::Instance().getConstantBuffer(toDraw_vertexShader);*/
 
     deviceContext->IASetInputLayout(inputLayout);
     deviceContext->VSSetShader( vertexShader, nullptr, 0 );
     deviceContext->PSSetShader( pixelShader, nullptr, 0 );
 
     //set it to the current vertexShader's infrequent buffer
-    CBChangesInfrequently newProjBuffer = {g_Projection};
-    deviceContext->UpdateSubresource( constantBuffer.infrequentBuffer, 0, nullptr, &newProjBuffer, 0, 0 );
-    deviceContext->VSSetConstantBuffers( 0, 1, &constantBuffer.infrequentBuffer );
+    //CBChangesInfrequently newProjBuffer = {g_Projection};
+    //deviceContext->UpdateSubresource( constantBuffer.infrequentBuffer, 0, nullptr, &newProjBuffer, 0, 0 );
+    //deviceContext->VSSetConstantBuffers( 0, 1, &constantBuffer.infrequentBuffer );
     
     float blendFactor[4] = { 0.0f, 0.0f, 0.0f, 0.0f };
     UINT sampleMask   = 0xffffffff;
@@ -403,105 +395,7 @@ void DirectX_GraphicsDevice::BeginDraw()
     
 }
 
-void DirectX_GraphicsDevice::Draw(MeshHandle& hMesh, TextureHandle& hTex)
-{
-    DebugAssert(hMesh.meshID >= 0, "Mesh ID is invalid. (Cannot be negative)");
-    DebugAssert(hTex.textureIndex >= 0, "Texture ID is invalid (Cannot be negative)");
 
-    //Setup the world/view matrices
-    CBChangesEveryFrame cb_Frame;
-    cb_Frame.mWorld = g_World;
-    cb_Frame.mView = g_View;
-    cb_Frame.vMeshColor = s_vMeshColor;
-
-    //get mesh data;
-    Mesh& mesh = (* MeshResourcer::Instance().getMesh(hMesh));
-
-    IndexBufferData& IndexData = BufferResourcer::Instance().getIBufferData(mesh.hIBuffer);
-    VertexBufferData& VertexData = BufferResourcer::Instance().getVBufferData(mesh.hVBuffer);
-
-    ID3D11Buffer* vertexBuffer = VertexData.getVertexBuffer();
-    ID3D11Buffer* indexBuffer = IndexData.getIndexBuffer();
-    unsigned int stride = VertexData.stride;
-    unsigned int vertexoffset = mesh.vertexOffset;
-    unsigned int indexOffset = mesh.indexOffset;
-    unsigned int vertexCount = VertexData.vertexLength;
-    unsigned int indexCount = IndexData.indexLength;
-
-    //get texture data
-    ID3D11ShaderResourceView* texture = TextureResourcer::Instance().getTextureData(hTex).textureView;
-
-    //input assembler for mesh data
-    deviceContext->IASetVertexBuffers( 0, 1, &vertexBuffer, &stride, &vertexoffset );
-    deviceContext->IASetIndexBuffer( indexBuffer, DXGI_FORMAT_R32_UINT, 0 );
-    deviceContext->IASetPrimitiveTopology( VertexData.primitiveTopology );
-
-    //set constant buffer for world/view matrix
-    deviceContext->UpdateSubresource( constantBuffer.frameBuffer, 0, nullptr, &cb_Frame, 0, 0 );
-    deviceContext->VSSetConstantBuffers( 1, 1, &constantBuffer.frameBuffer );
-
-    //set texture resources on pixel shader
-    deviceContext->PSSetShaderResources( 0, 1, &texture );
-    deviceContext->PSSetSamplers( 0, 1, &currentSampler );
-    deviceContext->PSSetConstantBuffers( 1, 1, &constantBuffer.frameBuffer );
-
-    
-    //draw
-    deviceContext->DrawIndexed( indexCount, indexOffset, vertexoffset ); 
-}
-
-void DirectX_GraphicsDevice::Draw(VertexBufferHandle& hVBuf, IndexBufferHandle& hIBuf, const TextureHandle& hTex)
-{
-    DebugAssert(hTex.textureIndex >= 0, "Texture ID is invalid (Cannot be negative)");
-
-    //get texture data
-    ID3D11ShaderResourceView* texture = TextureResourcer::Instance().getTextureData(hTex).textureView;
-    deviceContext->PSSetShaderResources( 0, 1, &texture );
-    Draw(hVBuf,  hIBuf);
-}
-
-void DirectX_GraphicsDevice::Draw(VertexBufferHandle& hVBuf, IndexBufferHandle& hIBuf)
-{
-    DebugAssert(hVBuf.VbufferID >= 0, "Vertex Buffer ID is invalid (Cannot be negative)");
-    DebugAssert(hIBuf.IbufferID >= 0, "Index Buffer ID is invalid (Cannot be negative)");
-
-    //Setup the world/view matrices
-    CBChangesEveryFrame cb_Frame;
-    cb_Frame.mWorld = g_World;
-    cb_Frame.mView = g_View;
-    cb_Frame.vMeshColor = s_vMeshColor;
-
-    //get mesh data;
-    IndexBufferData& IndexData = BufferResourcer::Instance().getIBufferData(hIBuf);
-    VertexBufferData& VertexData = BufferResourcer::Instance().getVBufferData(hVBuf);
-    ID3D11Buffer* vertexBuffer = VertexData.getVertexBuffer();
-    ID3D11Buffer* indexBuffer = IndexData.getIndexBuffer();
-    unsigned int stride = VertexData.stride;
-    unsigned int vertexoffset = 0;
-    unsigned int indexOffset = 0;
-    unsigned int vertexCount = VertexData.startVertex; //startVertex is the first free vertex
-    unsigned int indexCount = IndexData.startIndex;   //startIndex is the first free index
-
-    DebugAssert(indexCount > 0, "Trying to draw 0 indices?");
-    DebugAssert(vertexCount > 0, "Trying to draw 0 vertices?");
-
-
-    //input assembler for mesh data
-    deviceContext->IASetVertexBuffers( 0, 1, &vertexBuffer, &stride, &vertexoffset );
-    deviceContext->IASetIndexBuffer( indexBuffer, DXGI_FORMAT_R32_UINT, 0 );
-    deviceContext->IASetPrimitiveTopology( VertexData.primitiveTopology );
-
-    //set constant buffer for world/view matrix
-    deviceContext->UpdateSubresource( constantBuffer.frameBuffer, 0, nullptr, &cb_Frame, 0, 0 );
-    deviceContext->VSSetConstantBuffers( 1, 1, &constantBuffer.frameBuffer );
-
-    //set texture resources on pixel shader
-    deviceContext->PSSetSamplers( 0, 1, &currentSampler );
-    deviceContext->PSSetConstantBuffers( 1, 1, &constantBuffer.frameBuffer );
-
-    //draw
-    deviceContext->DrawIndexed( indexCount, indexOffset, vertexoffset ); 
-}
 
 void DirectX_GraphicsDevice::EndDraw()
 {
@@ -512,15 +406,6 @@ void DirectX_GraphicsDevice::EndDraw()
 //=============================================================================
 //=============================================================================
 
-int DirectX_GraphicsDevice::createVertexIndexBuffer(Mesh* mesh, VertexBufferHandle* hVBuf, IndexBufferHandle* hIBuf)
-{
-    BufferResourcer& resourceVertexBuf = BufferResourcer::Instance();
-    int result = resourceVertexBuf.createStaticBuffers(*mesh, device, hVBuf, hIBuf);
-    if(result)
-        return result;
-
-    return 0;
-}
 
 
 
@@ -531,18 +416,6 @@ void DirectX_GraphicsDevice::setClearColor(Color color)
     clearColor[2] = color.z;
     clearColor [3] = color.w;
 }
-
-void DirectX_GraphicsDevice::setVertexShader(VertexShaderHandle& hVertexShader)
-{
-    toDraw_vertexShader = hVertexShader;
-}
-
-
-void DirectX_GraphicsDevice::setPixelShader(PixelShaderHandle& hPixelShader)
-{
-    toDraw_pixelShader = hPixelShader;
-}
-
 
 void DirectX_GraphicsDevice::setWorld(Matrix& m)
 {

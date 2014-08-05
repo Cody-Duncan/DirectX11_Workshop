@@ -8,21 +8,6 @@
     <ClCompile Include="Graphics\DirectX_GraphicsDevice.cpp">
       <Filter>Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="Graphics\DirectX_PrimitiveBatch.cpp">
-      <Filter>Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="Graphics\DirectX_SpriteBatch.cpp">
-      <Filter>Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="GraphicsAPI\GraphicsDevice.cpp">
-      <Filter>GraphicsAPI</Filter>
-    </ClCompile>
-    <ClCompile Include="GraphicsAPI\SpriteBatch.cpp">
-      <Filter>GraphicsAPI</Filter>
-    </ClCompile>
-    <ClCompile Include="Graphics\BufferResourcer.cpp">
-      <Filter>Graphics</Filter>
-    </ClCompile>
     <ClCompile Include="Timer\OSHighResTimer.cpp">
       <Filter>Timer</Filter>
     </ClCompile>
@@ -41,13 +26,20 @@
     <ClCompile Include="WindowInput\WindowSystem.cpp">
       <Filter>WindowAndInput</Filter>
     </ClCompile>
+    <ClCompile Include="Debugging\Assert.cpp">
+      <Filter>Debug\Assert</Filter>
+    </ClCompile>
+    <ClCompile Include="Debugging\pempek_assert.cpp">
+      <Filter>Debug\Assert</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp" />
+    <ClCompile Include="WindowGlobals.cpp">
+      <Filter>WindowAndInput</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Debug">
       <UniqueIdentifier>{d0790728-4962-404c-bfb8-085357975f1b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GraphicsAPI">
-      <UniqueIdentifier>{827083d4-d21e-46ab-9a1a-b31cd8a26c48}</UniqueIdentifier>
     </Filter>
     <Filter Include="Graphics">
       <UniqueIdentifier>{122367c5-2397-427c-927a-e8bfa142bcc9}</UniqueIdentifier>
@@ -55,11 +47,11 @@
     <Filter Include="Timer">
       <UniqueIdentifier>{0371a1ad-feb6-4cd9-a450-663efa8a84ce}</UniqueIdentifier>
     </Filter>
-    <Filter Include="SimpleMath">
-      <UniqueIdentifier>{ff874bfd-30ab-40ae-9702-c20a5fc74af7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="WindowAndInput">
       <UniqueIdentifier>{e1016597-d13f-42c8-b4fb-ae53c6dea034}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Debug\Assert">
+      <UniqueIdentifier>{dfeec093-2c05-4c78-9ecb-7dbd79c8c2c2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -75,31 +67,7 @@
     <ClInclude Include="Graphics\DirectX_GraphicsDevice.h">
       <Filter>Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="Graphics\DirectX_PrimitiveBatch.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="Graphics\DirectX_SpriteBatch.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
     <ClInclude Include="Graphics\Vertex.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="GraphicsAPI\DeviceAPI.h">
-      <Filter>GraphicsAPI</Filter>
-    </ClInclude>
-    <ClInclude Include="GraphicsAPI\GraphicsDevice.h">
-      <Filter>GraphicsAPI</Filter>
-    </ClInclude>
-    <ClInclude Include="GraphicsAPI\PrimitiveBatch.h">
-      <Filter>GraphicsAPI</Filter>
-    </ClInclude>
-    <ClInclude Include="GraphicsAPI\SpriteBatch.h">
-      <Filter>GraphicsAPI</Filter>
-    </ClInclude>
-    <ClInclude Include="SimpleMath\SimpleMath.h">
-      <Filter>SimpleMath</Filter>
-    </ClInclude>
-    <ClInclude Include="Graphics\BufferResourcer.h">
       <Filter>Graphics</Filter>
     </ClInclude>
     <ClInclude Include="Timer\OSHighResTimer.h">
@@ -123,10 +91,15 @@
     <ClInclude Include="WindowInput\WindowSystem.h">
       <Filter>WindowAndInput</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="SimpleMath\SimpleMath.inl">
-      <Filter>SimpleMath</Filter>
-    </None>
+    <ClInclude Include="Debugging\Assert.h">
+      <Filter>Debug\Assert</Filter>
+    </ClInclude>
+    <ClInclude Include="Debugging\AssertErrorLogFile.h">
+      <Filter>Debug\Assert</Filter>
+    </ClInclude>
+    <ClInclude Include="Debugging\pempek_assert.h">
+      <Filter>Debug\Assert</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h" />
   </ItemGroup>
 </Project>

@@ -1,15 +1,9 @@
 #pragma once
+#include <dxgi.h>
+#include <d3d11.h>
+#include "WindowInput\WindowGlobals.h"
 
-#include "GraphicsAPI\GraphicsDevice.h"
-#include "SimpleMath\SimpleMath.h"
-
-#include "Graphics\ConstantBuffer.h"
-
-
-
-
-
-__declspec(align(16)) class DirectX_GraphicsDevice : public GraphicsDevice
+__declspec(align(16)) class DirectX_GraphicsDevice
 {
 private:
     Matrix    g_World;
@@ -25,17 +19,11 @@ public:
     virtual int OnResize();
     virtual void clearRenderTarget();
     virtual void BeginDraw();
-    virtual void Draw(MeshHandle& hMesh, TextureHandle& hTex);
     virtual void EndDraw();
     virtual void SwapBuffer();
     virtual void Free();
 
-    virtual int  createVertexIndexBuffer(Mesh* mesh, VertexBufferHandle* hVBuf, IndexBufferHandle* hIBuf);
-
     virtual void setClearColor(Color color);
-
-    virtual void setVertexShader(VertexShaderHandle&);
-    virtual void setPixelShader(PixelShaderHandle&);
 
     virtual void setWorld(Matrix&);
     virtual void setView(Vector4& eye, Vector4& at, Vector4& up);
@@ -46,8 +34,6 @@ public:
 
     ID3D11Device* getDevice();
     ID3D11DeviceContext* getContext();
-    void Draw(VertexBufferHandle& hVBuf, IndexBufferHandle& hIBuf, const TextureHandle& hTex);
-    void Draw(VertexBufferHandle& hVBuf, IndexBufferHandle& hIBuf);
     int getWidth();
     int getHeight();
 
@@ -89,12 +75,9 @@ protected:
     int frameRateDenom;
     bool vsync_enabled;
 
-    VertexShaderHandle toDraw_vertexShader;
-    PixelShaderHandle toDraw_pixelShader;
 
     ID3D11VertexShader* vertexShader;
     ID3D11PixelShader* pixelShader;
     ID3D11InputLayout* inputLayout;
-    ConstantBufferPair constantBuffer;
 };
 

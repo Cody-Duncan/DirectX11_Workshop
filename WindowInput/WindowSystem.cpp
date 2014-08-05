@@ -1,12 +1,12 @@
 
-#include "WindowSystem.h"
-#include "WindowGlobals.h"
+#include "WindowInput\WindowSystem.h"
+#include "WindowInput\WindowGlobals.h"
 #include "RunningState.h"
 #include <tchar.h>
 
 
 
-bool GenerateWindow(WNDPROC WndProc, int width, int height)
+bool GenerateWindow(WNDPROC WndProc, const char* windowTitle, int width, int height)
 {
     static TCHAR szWindowClass[] = _T("shady_tree_app");
     static TCHAR szTitle[] = _T("ShadyTree Test");

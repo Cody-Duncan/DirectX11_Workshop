@@ -1,4 +1,4 @@
-#include "WindowInputInitializer.h"
+#include "WindowInput\WindowInputInitializer.h"
 
 /// <summary>
 /// Initializes the window with given parameters. Initialized input state. 

@@ -1,7 +1,7 @@
 #pragma once
 
-#include "WindowSystem.h"
-#include "InputState.h"
+#include "WindowInput\WindowSystem.h"
+#include "WindowInput\InputState.h"
 
 void InitializeWindowAndInput(const char* windowTitle, int width, int height);
 
