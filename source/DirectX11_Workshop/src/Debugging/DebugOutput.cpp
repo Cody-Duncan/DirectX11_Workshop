@@ -1,4 +1,4 @@
-#include "DebugOutput.h"
+#include "Debugging/DebugOutput.h"
 #include <ctime>
 #include <iostream>
 #include <fstream>

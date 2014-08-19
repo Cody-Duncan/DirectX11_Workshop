@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="pch.cpp" />
+    <ClCompile Include="src\Debugging\DebugOutput.cpp">
+      <Filter>Debugging</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Debugging\pempek_assert.cpp">
+      <Filter>Debugging</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Graphics\DirectX_GraphicsDevice.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Timer\OSHighResTimer.cpp">
+      <Filter>Timer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Timer\Stopwatch.cpp">
+      <Filter>Timer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\WindowInput\InputState.cpp">
+      <Filter>WindowAndInput</Filter>
+    </ClCompile>
+    <ClCompile Include="src\WindowInput\RunningState.cpp">
+      <Filter>WindowAndInput</Filter>
+    </ClCompile>
+    <ClCompile Include="src\WindowInput\WindowGlobals.cpp">
+      <Filter>WindowAndInput</Filter>
+    </ClCompile>
+    <ClCompile Include="src\WindowInput\WindowInputInitializer.cpp">
+      <Filter>WindowAndInput</Filter>
+    </ClCompile>
+    <ClCompile Include="src\WindowInput\WindowSystem.cpp">
+      <Filter>WindowAndInput</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Driver.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Graphics">
+      <UniqueIdentifier>{122367c5-2397-427c-927a-e8bfa142bcc9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Timer">
+      <UniqueIdentifier>{0371a1ad-feb6-4cd9-a450-663efa8a84ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="WindowAndInput">
+      <UniqueIdentifier>{e1016597-d13f-42c8-b4fb-ae53c6dea034}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Debugging">
+      <UniqueIdentifier>{d0790728-4962-404c-bfb8-085357975f1b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="include\Debugging\AssertErrorLogFile.h">
+      <Filter>Debugging</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Debugging\DebugOutput.h">
+      <Filter>Debugging</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Debugging\pempek_assert.h">
+      <Filter>Debugging</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Graphics\ConstantBuffer.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Graphics\Debug_Graphics.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Graphics\DirectX_GraphicsDevice.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Graphics\Vertex.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Timer\OSHighResTimer.h">
+      <Filter>Timer</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Timer\Stopwatch.h">
+      <Filter>Timer</Filter>
+    </ClInclude>
+    <ClInclude Include="include\WindowInput\InputState.h">
+      <Filter>WindowAndInput</Filter>
+    </ClInclude>
+    <ClInclude Include="include\WindowInput\RunningState.h">
+      <Filter>WindowAndInput</Filter>
+    </ClInclude>
+    <ClInclude Include="include\WindowInput\WindowGlobals.h">
+      <Filter>WindowAndInput</Filter>
+    </ClInclude>
+    <ClInclude Include="include\WindowInput\WindowInputInitializer.h">
+      <Filter>WindowAndInput</Filter>
+    </ClInclude>
+    <ClInclude Include="include\WindowInput\WindowSystem.h">
+      <Filter>WindowAndInput</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Debugging\AssertPem.h">
+      <Filter>Debugging</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

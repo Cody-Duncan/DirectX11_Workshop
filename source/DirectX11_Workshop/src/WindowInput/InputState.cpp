@@ -1,4 +1,4 @@
-#include "InputState.h"
+#include "WindowInput/InputState.h"
 
 #include<windowsx.h>
 

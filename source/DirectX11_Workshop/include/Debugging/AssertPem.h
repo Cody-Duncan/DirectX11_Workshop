@@ -8,16 +8,3 @@
 #define ASSERT_FATAL    PPK_ASSERT_FATAL
 #define ASSERT_CUSTOM   PPK_ASSERT_CUSTOM
 #define ASSERT_USED     PPK_ASSERT_USED
-
-
-
-PPK_ASSERT_ACTION_TYPE AssertHandler(
-	const char* file,
-	int line,
-	const char* function,
-	const char* expression,
-	int level,
-	const char* message
-);
-
-void SetAssertionHanlders();

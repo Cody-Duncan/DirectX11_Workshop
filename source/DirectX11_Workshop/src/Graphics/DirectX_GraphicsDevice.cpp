@@ -1,13 +1,13 @@
-#include "DirectX_GraphicsDevice.h"
-#include "WindowInput\WindowGlobals.h"          //ghMainWnd
+#include "Graphics/DirectX_GraphicsDevice.h"
+#include "WindowInput/WindowGlobals.h"          //ghMainWnd
 
 #include <assert.h>
 #include <d3dcompiler.h>
 #include <directxmath.h>
 #include <directxcolors.h>
 #include <sstream>
-#include "Vertex.h"
-#include "Debug_Graphics.h"
+#include "Graphics/Vertex.h"
+#include "Graphics/Debug_Graphics.h"
 
 DirectX_GraphicsDevice::DirectX_GraphicsDevice(void) : 
     driverType(D3D_DRIVER_TYPE_HARDWARE), 
