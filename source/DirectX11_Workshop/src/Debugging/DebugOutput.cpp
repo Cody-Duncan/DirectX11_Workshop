@@ -62,7 +62,7 @@ int InitDebugLogFile()
 
 int CloseDebugLogFile() 
 {
-    DebugPrintf("\n");
+    DebugPrintF("\n");
     debugLogFile.close();
     return 0;
 }

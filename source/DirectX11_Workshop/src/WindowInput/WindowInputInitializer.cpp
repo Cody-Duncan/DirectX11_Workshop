@@ -1,21 +1,11 @@
 #include "WindowInput\WindowInputInitializer.h"
 
-/// <summary>
-/// Initializes the window with given parameters. Initialized input state. 
-/// Hooks Input_WndProc for InputState to the WndProc for the generated window.
-/// </summary>
-/// <remarks>
-///     HINSTANCE and HWND stored in WindowGlobals.
-///     The state of the keyboard and mouse can be read via gINPUTSTATE in InputState.h
-/// </remarks>
-/// <param name="windowTitle">The window title.</param>
-/// <param name="width">The width.</param>
-/// <param name="height">The height.</param>
+
 void InitializeWindowAndInput(const char* windowTitle, int width, int height)
 {
-    InitGlobalInput();
-    GenerateWindow(Input_WndProc, windowTitle, width, height);
-    ActivateWindow();
+	InitGlobalInput();
+	GenerateWindow(Input_WndProc, windowTitle, width, height);
+	ActivateWindow();
 }
 
 /// <summary>
@@ -24,6 +14,6 @@ void InitializeWindowAndInput(const char* windowTitle, int width, int height)
 /// </summary>
 void UpdateWindowAndInput()
 {
-    gINPUTSTATE->Update();
-    UpdateWindowMsgs();
+	gINPUTSTATE->Update();
+	UpdateWindowMsgs();
 }

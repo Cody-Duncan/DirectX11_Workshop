@@ -10,6 +10,7 @@
 #include <windows.h>
 #endif
 
+#include "Debugging/AssertErrorLogFile.h"
 #include "Debugging/pempek_assert.h"
 
 #include <cstdio>  // fprintf() and vsnprintf()

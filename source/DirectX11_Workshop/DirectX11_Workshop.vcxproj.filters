@@ -8,9 +8,6 @@
     <ClCompile Include="src\Debugging\pempek_assert.cpp">
       <Filter>Debugging</Filter>
     </ClCompile>
-    <ClCompile Include="src\Graphics\DirectX_GraphicsDevice.cpp">
-      <Filter>Graphics</Filter>
-    </ClCompile>
     <ClCompile Include="src\Timer\OSHighResTimer.cpp">
       <Filter>Timer</Filter>
     </ClCompile>
@@ -62,9 +59,6 @@
     <ClInclude Include="include\Graphics\ConstantBuffer.h">
       <Filter>Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="include\Graphics\Debug_Graphics.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
     <ClInclude Include="include\Graphics\DirectX_GraphicsDevice.h">
       <Filter>Graphics</Filter>
     </ClInclude>
@@ -94,6 +88,15 @@
     </ClInclude>
     <ClInclude Include="include\Debugging\AssertPem.h">
       <Filter>Debugging</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Graphics\GraphicsSystem.cpp">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Graphics\ComPtr.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Graphics\GraphicsSystem.h">
+      <Filter>Graphics</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
