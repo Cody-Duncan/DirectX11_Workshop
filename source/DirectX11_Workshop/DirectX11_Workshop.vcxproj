@@ -65,6 +65,7 @@
     <ClCompile Include="src\Debugging\pempek_assert.cpp" />
     <ClCompile Include="src\Driver.cpp" />
     <ClCompile Include="src\Graphics\GraphicsSystem.cpp" />
+    <ClCompile Include="src\Graphics\Shader.cpp" />
     <ClCompile Include="src\Timer\OSHighResTimer.cpp" />
     <ClCompile Include="src\Timer\Stopwatch.cpp" />
     <ClCompile Include="src\WindowInput\InputState.cpp" />
@@ -82,6 +83,8 @@
     <ClInclude Include="include\Graphics\ConstantBuffer.h" />
     <ClInclude Include="include\Graphics\DirectX_GraphicsDevice.h" />
     <ClInclude Include="include\Graphics\GraphicsSystem.h" />
+    <ClInclude Include="include\Graphics\Shader.h" />
+    <ClInclude Include="include\Graphics\ShaderFactory.h" />
     <ClInclude Include="include\Graphics\Vertex.h" />
     <ClInclude Include="include\Timer\OSHighResTimer.h" />
     <ClInclude Include="include\Timer\Stopwatch.h" />
@@ -91,6 +94,7 @@
     <ClInclude Include="include\WindowInput\WindowInputInitializer.h" />
     <ClInclude Include="include\WindowInput\WindowSystem.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="src\Graphics\ShaderFactory.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

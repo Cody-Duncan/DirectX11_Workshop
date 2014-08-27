@@ -33,6 +33,9 @@
     <ClCompile Include="src\Graphics\GraphicsSystem.cpp">
       <Filter>Graphics</Filter>
     </ClCompile>
+    <ClCompile Include="src\Graphics\Shader.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Graphics">
@@ -96,6 +99,15 @@
       <Filter>Graphics</Filter>
     </ClInclude>
     <ClInclude Include="include\Graphics\GraphicsSystem.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Graphics\ShaderFactory.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Graphics\ShaderFactory.cpp">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Graphics\Shader.h">
       <Filter>Graphics</Filter>
     </ClInclude>
   </ItemGroup>
