@@ -115,6 +115,8 @@ void GraphicsSystem::Init(HWND ghMainWnd)
 		hr = dxgiFactory->CreateSwapChain(m_device.Get(), &sd, &m_swapChain);
 		ASSERT_ERROR(SUCCEEDED(hr), "Could not create SwapChain.\n");
 	}
+
+	OnResize();
 }
 
 int GraphicsSystem::OnResize()
@@ -157,7 +159,7 @@ int GraphicsSystem::OnResize()
 	m_deviceContext->OMSetDepthStencilState(m_commonStates.get()->DepthDefault(), 1);
 
 	// Bind Render Target and Depth stencil 
-	m_deviceContext->OMSetRenderTargets(1, &m_renderTargetView, m_depthStencilView.Get());
+	m_deviceContext->OMSetRenderTargets(1, m_renderTargetView.GetAddressOf(), m_depthStencilView.Get());
 
 
 	//Create Viewport
