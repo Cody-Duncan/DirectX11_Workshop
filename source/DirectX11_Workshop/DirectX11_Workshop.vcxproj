@@ -64,6 +64,7 @@
     <ClCompile Include="src\Debugging\DebugOutput.cpp" />
     <ClCompile Include="src\Debugging\pempek_assert.cpp" />
     <ClCompile Include="src\Driver.cpp" />
+    <ClCompile Include="src\Graphics\GraphicsSystem.cpp" />
     <ClCompile Include="src\Timer\OSHighResTimer.cpp" />
     <ClCompile Include="src\Timer\Stopwatch.cpp" />
     <ClCompile Include="src\WindowInput\InputState.cpp" />
@@ -90,7 +91,6 @@
     <ClInclude Include="include\WindowInput\WindowInputInitializer.h" />
     <ClInclude Include="include\WindowInput\WindowSystem.h" />
     <ClInclude Include="pch.h" />
-    <ClInclude Include="src\Graphics\GraphicsSystem.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

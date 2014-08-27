@@ -3,12 +3,12 @@
 
 
 GraphicsSystem::GraphicsSystem():
-m_driverType(D3D_DRIVER_TYPE_HARDWARE), 
-m_featureLevel(D3D_FEATURE_LEVEL_11_0),
-m_frameRateDenom(60),
-m_vsync_enabled(true),
-m_enable4xMsaa(false),
-m_MeshColor(Vector4(0.9f, 0.0f, 0.9f,1.0f))
+	m_driverType(D3D_DRIVER_TYPE_HARDWARE), 
+	m_featureLevel(D3D_FEATURE_LEVEL_11_0),
+	m_frameRateDenom(60),
+	m_vsync_enabled(true),
+	m_enable4xMsaa(false),
+	m_MeshColor(Vector4(0.9f, 0.0f, 0.9f,1.0f))
 {
 	
 }
@@ -173,11 +173,39 @@ int GraphicsSystem::OnResize()
 	return 0;
 }
 
-void GraphicsSystem::Update()
+void GraphicsSystem::ClearRenderTarget()
 {
-	
+	m_deviceContext->ClearRenderTargetView(m_renderTargetView.Get(), (float*)&m_ClearColor);
+	m_deviceContext->ClearDepthStencilView(m_depthStencilView.Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
 }
 
+void GraphicsSystem::Update()
+{
+	using namespace DirectX;
+
+	ASSERT_DEBUG(m_deviceContext, "Device Context is null.");
+	ASSERT_DEBUG(m_swapChain, "Swap chain is null.");
+
+	//========== BEGIN DRAW PHASE ==========//
+	//m_deviceContext->IASetInputLayout();
+	//m_deviceContext->VSSetShader();
+	//m_deviceContext->PSSetShader();
+
+	float blendFactor[4] = {0.0f, 0.0f, 0.0f, 0.0f};
+	m_deviceContext->OMSetBlendState(m_commonStates.get()->Opaque(), blendFactor, 0xffffffff);
+
+	//========== DRAW PHASE ==========//
+	ClearRenderTarget();
+
+
+	//========== END DRAW PHASE ==========//
+	SwapBuffer();
+}
+void GraphicsSystem::SwapBuffer()
+{
+	HRESULT hr = m_swapChain->Present(m_vsync_enabled ? 1 : 0, 0);
+	ASSERT_DEBUG(SUCCEEDED(hr), "Swap chain swapping failed.");
+}
 void GraphicsSystem::DeInit()
 {
 	

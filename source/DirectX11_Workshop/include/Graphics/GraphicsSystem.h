@@ -15,6 +15,8 @@ public:
 	void DeInit();
 	int OnResize();
 
+	void ClearRenderTarget();
+	void SwapBuffer();
 private:
 	
 	Matrix	  g_World;

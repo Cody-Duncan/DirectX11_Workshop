@@ -30,6 +30,9 @@
       <Filter>WindowAndInput</Filter>
     </ClCompile>
     <ClCompile Include="src\Driver.cpp" />
+    <ClCompile Include="src\Graphics\GraphicsSystem.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Graphics">
@@ -88,9 +91,6 @@
     </ClInclude>
     <ClInclude Include="include\Debugging\AssertPem.h">
       <Filter>Debugging</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Graphics\GraphicsSystem.cpp">
-      <Filter>Graphics</Filter>
     </ClInclude>
     <ClInclude Include="include\Graphics\ComPtr.h">
       <Filter>Graphics</Filter>
