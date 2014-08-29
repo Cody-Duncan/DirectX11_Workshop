@@ -2,24 +2,23 @@
 #include <memory>	                 // shared_ptr 
 
 
-GraphicsSystem::GraphicsSystem():
-	m_commonStates(nullptr, nullptr),
-	m_driverType(D3D_DRIVER_TYPE_HARDWARE), 
-	m_featureLevel(D3D_FEATURE_LEVEL_11_0),
-	m_frameRateDenom(60),
-	m_vsync_enabled(true),
-	m_enable4xMsaa(false),
-	m_MeshColor(Vector4(0.9f, 0.0f, 0.9f,1.0f))
+GraphicsSystem::GraphicsSystem()
 {
-	
 }
 
 GraphicsSystem::~GraphicsSystem()
 {
-	m_deviceContext->ClearState();
+	ASSERT_DEBUG(m_device == nullptr, "Did not Call DeInit().");
+}
 
+void GraphicsSystem::DeInit()
+{
+	if(m_deviceContext)
+		m_deviceContext->ClearState();
+
+	//unset fullscreen
 	//if( /* is fullscreen */ )
-		//m_swapChain->SetFullscreenState(FALSE, NULL); //unset fullscreen
+		//m_swapChain->SetFullscreenState(FALSE, NULL); 
 	
 	//Free the resources.
 	 m_depthStencilBuffer = nullptr; 
@@ -29,9 +28,7 @@ GraphicsSystem::~GraphicsSystem()
 	 m_commonStates       = nullptr; //Custom Deallocator
 	 m_deviceContext      = nullptr; 
 	 m_device             = nullptr;
-	 
 }
-
 
 void GraphicsSystem::Init(HWND ghMainWnd)
 {
@@ -241,14 +238,12 @@ void GraphicsSystem::Update()
 
 
 	//========== END DRAW PHASE ==========//
-	SwapBuffer();
+	SwapBuffers();
 }
-void GraphicsSystem::SwapBuffer()
+
+void GraphicsSystem::SwapBuffers()
 {
 	HRESULT hr = m_swapChain->Present(m_vsync_enabled ? 1 : 0, 0);
 	ASSERT_DEBUG(SUCCEEDED(hr), "Swap chain swapping failed.");
 }
-void GraphicsSystem::DeInit()
-{
-	
-}
+

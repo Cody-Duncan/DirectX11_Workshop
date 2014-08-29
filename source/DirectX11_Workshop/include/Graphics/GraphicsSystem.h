@@ -16,7 +16,8 @@ public:
 	int OnResize();
 
 	void ClearRenderTarget();
-	void SwapBuffer();
+	void SwapBuffers();
+	
 private:
 	
 	Matrix	  g_World;
@@ -34,9 +35,9 @@ private:
 	ComPtr<ID3D11Texture2D>         m_depthStencilBuffer;
 	D3D11_VIEWPORT                  m_screenViewport;
 
-	
+	typedef std::unique_ptr<DirectX::CommonStates, void(*)(DirectX::CommonStates*)> UniqPtr_CommonStates;
 	unsigned char m_commonStatesBuffer[sizeof(DirectX::CommonStates)];
-	std::unique_ptr<DirectX::CommonStates, void(*)(DirectX::CommonStates*)> m_commonStates;
+	UniqPtr_CommonStates m_commonStates = UniqPtr_CommonStates(nullptr, nullptr);
 
 	unsigned int	   m_Window_Width   = 0;
 	unsigned int	   m_Window_Height  = 0;
@@ -50,7 +51,7 @@ private:
 	Vector4	           m_ClearColor     = Vector4(0.1f, 0.1f, 0.1f, 1.0f);
 	Vector4            m_MeshColor      = Vector4(0.9f, 0.0f, 0.9f, 1.0f);
 	
-	ID3D11VertexShader* m_vertexShader;
-	ID3D11PixelShader*  m_pixelShader;
-	ID3D11InputLayout*  m_inputLayout;
+	ID3D11VertexShader* m_vertexShader = nullptr;
+	ID3D11PixelShader*  m_pixelShader  = nullptr;
+	ID3D11InputLayout*  m_inputLayout  = nullptr;
 };
