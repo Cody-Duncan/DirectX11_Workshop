@@ -36,7 +36,7 @@ private:
 
 	
 	unsigned char m_commonStatesBuffer[sizeof(DirectX::CommonStates)];
-	std::unique_ptr<DirectX::CommonStates> m_commonStates;
+	std::unique_ptr<DirectX::CommonStates, void(*)(DirectX::CommonStates*)> m_commonStates;
 
 	unsigned int	   m_Window_Width   = 0;
 	unsigned int	   m_Window_Height  = 0;

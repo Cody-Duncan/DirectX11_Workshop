@@ -3,6 +3,7 @@
 
 
 GraphicsSystem::GraphicsSystem():
+	m_commonStates(nullptr, nullptr),
 	m_driverType(D3D_DRIVER_TYPE_HARDWARE), 
 	m_featureLevel(D3D_FEATURE_LEVEL_11_0),
 	m_frameRateDenom(60),
@@ -15,7 +16,20 @@ GraphicsSystem::GraphicsSystem():
 
 GraphicsSystem::~GraphicsSystem()
 {
+	m_deviceContext->ClearState();
+
+	//if( /* is fullscreen */ )
+		//m_swapChain->SetFullscreenState(FALSE, NULL); //unset fullscreen
 	
+	//Free the resources.
+	 m_depthStencilBuffer = nullptr; 
+	 m_depthStencilView   = nullptr;
+	 m_renderTargetView   = nullptr;
+	 m_swapChain          = nullptr;
+	 m_commonStates       = nullptr; //Custom Deallocator
+	 m_deviceContext      = nullptr; 
+	 m_device             = nullptr;
+	 
 }
 
 
@@ -36,7 +50,7 @@ void GraphicsSystem::Init(HWND ghMainWnd)
 		createDeviceFlags |= D3D11_CREATE_DEVICE_DEBUG;
 	#endif
 	
-	//======= Generate Create Device =============
+	//============= Create Device =============
 	hr = D3D11CreateDevice(
 		0,						// use default display adapter
 		m_driverType,
@@ -62,8 +76,14 @@ void GraphicsSystem::Init(HWND ghMainWnd)
 	ASSERT_ERROR(SUCCEEDED(hr), "Error Checking Multi Sample Quality Levels. \n");
 	ASSERT_WARNING( m_4xMsaaQuality > 0, "M4xMsaaQuality is 0, Multisampling with the given format and sample count combination is not supported for the installed graphics adapter.");
 
+
+	//============= Create Common States =============
 	using namespace DirectX;
-	m_commonStates = std::unique_ptr<CommonStates>( new (m_commonStatesBuffer) CommonStates(m_device.Get()) );
+	m_commonStates = std::unique_ptr<CommonStates, void(*)(CommonStates*)>
+		( 
+			new (m_commonStatesBuffer) CommonStates(m_device.Get()) ,	      // Allocate memory in local buffer.
+			[](CommonStates* commonStates) { commonStates->~CommonStates(); } // Custom deallocation function. 
+		);
 
 	//======= Generate Swap Chain Description =============
 	DXGI_SWAP_CHAIN_DESC sd;
@@ -126,15 +146,31 @@ int GraphicsSystem::OnResize()
 	ASSERT_DEBUG(m_swapChain    , "Swap chain is null. This is really bad.");
 
 	HRESULT hr = S_OK;
-	
-	//create RenderTargetView
+
+	//****************************** FREE RESOURCES ******************************//
+
+	// Release the RenderTargets
+	m_depthStencilView = nullptr;
+	m_renderTargetView = nullptr;
+	m_deviceContext->OMSetRenderTargets(0, 0, 0);
+	m_deviceContext->ClearState();
+
+	// Resize Swap Chain buffers
+	hr = m_swapChain->ResizeBuffers(1, m_Window_Width, m_Window_Height, DXGI_FORMAT_R8G8B8A8_UNORM, 0);
+	ASSERT_DEBUG(SUCCEEDED(hr), "Failed to resize swap chain buffers.");
+
+
+
+
+	//****************************** CREATE RENDERTARGETS ******************************//
+	// Create RenderTargetView
 	ComPtr<ID3D11Texture2D> backBuffer;
 	hr = m_swapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), &backBuffer);
 	ASSERT_ERROR(SUCCEEDED(hr), "FAILED: Failed to get backbuffer from swap chain.\n");
 	m_device->CreateRenderTargetView(backBuffer.Get(), 0, &m_renderTargetView);
 
 	
-	//Create DepthStencilView
+	// Create DepthStencilView
 	D3D11_TEXTURE2D_DESC depthStencilTextureDesc;
 	depthStencilTextureDesc.Width              = m_Window_Width;
 	depthStencilTextureDesc.Height             = m_Window_Height;
@@ -155,6 +191,9 @@ int GraphicsSystem::OnResize()
 	hr = m_device->CreateDepthStencilView(m_depthStencilBuffer.Get(), 0, &m_depthStencilView); 
 	ASSERT_ERROR(SUCCEEDED(hr), "FAILED: Failed to create depth stencil view.");
 
+
+
+	//****************************** BIND RENDERTARGETS ******************************//
 	// Create Depth Stencil State
 	m_deviceContext->OMSetDepthStencilState(m_commonStates.get()->DepthDefault(), 1);
 
@@ -162,6 +201,7 @@ int GraphicsSystem::OnResize()
 	m_deviceContext->OMSetRenderTargets(1, m_renderTargetView.GetAddressOf(), m_depthStencilView.Get());
 
 
+	//****************************** CREATE VIEWPORT ******************************//
 	//Create Viewport
 	m_screenViewport.TopLeftX = 0.0f;
 	m_screenViewport.TopLeftY = 0.0f;
