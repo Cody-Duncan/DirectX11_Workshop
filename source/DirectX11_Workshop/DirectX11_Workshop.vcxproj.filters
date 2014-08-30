@@ -8,9 +8,6 @@
     <ClCompile Include="src\Debugging\pempek_assert.cpp">
       <Filter>Debugging</Filter>
     </ClCompile>
-    <ClCompile Include="src\Timer\OSHighResTimer.cpp">
-      <Filter>Timer</Filter>
-    </ClCompile>
     <ClCompile Include="src\Timer\Stopwatch.cpp">
       <Filter>Timer</Filter>
     </ClCompile>
@@ -73,9 +70,6 @@
     </ClInclude>
     <ClInclude Include="include\Graphics\Vertex.h">
       <Filter>Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Timer\OSHighResTimer.h">
-      <Filter>Timer</Filter>
     </ClInclude>
     <ClInclude Include="include\Timer\Stopwatch.h">
       <Filter>Timer</Filter>

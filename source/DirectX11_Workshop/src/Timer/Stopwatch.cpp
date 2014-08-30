@@ -2,14 +2,16 @@
 #include "Timer\Stopwatch.h"
 
 
-Stopwatch::Stopwatch() : m_startCount(0), m_elapsedTimeSec(0.0)
+Stopwatch::Stopwatch(bool singleThread) : m_startCount(), m_elapsedTime(0)
 {
-    // Does some initialization to get consistent results for all tests:
-    // Confine the test to run on a single processor,
-    // to get consistent results for all tests.
-    SetThreadAffinityMask(GetCurrentThread(), 1);
-    SetThreadIdealProcessor(GetCurrentThread(), 0);
-    Sleep(1);
+	if(singleThread)
+	{
+		// Does some initialization to get consistent results for all tests:
+		// Confine the test to run on a single processor
+		SetThreadAffinityMask(GetCurrentThread(), 1);
+		SetThreadIdealProcessor(GetCurrentThread(), 0);
+		Sleep(1); //reset the thread
+	}
 }
 
 /// <summary>
@@ -17,8 +19,8 @@ Stopwatch::Stopwatch() : m_startCount(0), m_elapsedTimeSec(0.0)
 /// </summary>
 void Stopwatch::Start()
 {
-    m_elapsedTimeSec = 0.0;
-    m_startCount = Counter();
+	m_elapsedTime = Duration(0);
+	m_startCount = std::chrono::high_resolution_clock::now();
 }
 
 /// <summary>
@@ -26,10 +28,9 @@ void Stopwatch::Start()
 /// </summary>
 void Stopwatch::Stop()
 {
-    LONGLONG stopCount = Counter();
-    // time is measured in seconds
-    m_elapsedTimeSec = (stopCount - m_startCount) * 1.0 / Frequency();
-    m_startCount = 0;
+	TimePoint stopCount = std::chrono::high_resolution_clock::now();
+	m_elapsedTime = std::chrono::duration_cast<std::chrono::nanoseconds>(stopCount - m_startCount);
+	m_startCount = TimePoint();
 }
 
 
@@ -37,9 +38,9 @@ void Stopwatch::Stop()
 /// Calculates the elapsed time between Start() and Stop() in seconds.
 /// </summary>
 /// <returns>total elapsed time (in seconds) in Start-Stop interval.</returns>
-double Stopwatch::ElapsedTimeSec() const
+double Stopwatch::ElapsedTimeSeconds() const
 {
-    return m_elapsedTimeSec;
+	return std::chrono::duration_cast<std::chrono::duration<double>>(m_elapsedTime).count();
 }
 
 
@@ -47,27 +48,16 @@ double Stopwatch::ElapsedTimeSec() const
 /// Calculates the elapsed time between Start() and Stop() in milliseconds.
 /// </summary>
 /// <returns>total elapsed time (in milliseconds) in Start-Stop interval.</returns>
-double Stopwatch::ElapsedTimeMilliSec() const
+double Stopwatch::ElapsedTimeMilliSeconds() const
 {
-    return m_elapsedTimeSec * 1000.0;
+	return std::chrono::duration_cast<std::chrono::duration<double,std::milli>>(m_elapsedTime).count();
 }
 
-
 /// <summary>
-/// Queries the high-resolution counter on the machine.
+/// Returns the elapsed time between Start() and Stop() as an std::chrono duration. 
 /// </summary>
-/// <returns>current value of high-resolution counter.</returns>
-LONGLONG Stopwatch::Counter() const
+/// <returns></returns>
+Stopwatch::Duration Stopwatch::ElapsedTime() const
 {
-    return readHiResTimer();
-}
-
-
-/// <summary>
-/// Queries the frequency (in counts per second) of the high-resolution counter
-/// </summary>
-/// <returns>frequency of the high-resolution counter.</returns>
-LONGLONG Stopwatch::Frequency() const
-{
-    return readHiResTimerFrequency();
+	return m_elapsedTime;
 }
