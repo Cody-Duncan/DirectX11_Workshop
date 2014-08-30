@@ -61,16 +61,16 @@ void GraphicsSystem::Init(HWND ghMainWnd)
 	);
 
 	LOG("GRAPHICS: Creating Graphics Device\n");
-	ASSERT_ERROR(SUCCEEDED(hr), "D3D11CreateDevice not created.\n");
+	ASSERT_DEBUG(SUCCEEDED(hr), "D3D11CreateDevice not created.\n");
 	
 	if( m_featureLevel != D3D_FEATURE_LEVEL_11_0 )
 	{
-		ASSERT_ERROR(false, "Direct3D Feature Level 11 unsupported.\n");
+		ASSERT_DEBUG(false, "Direct3D Feature Level 11 unsupported.\n");
 		return;
 	}
 
 	hr = m_device->CheckMultisampleQualityLevels(DXGI_FORMAT_R8G8B8A8_UNORM, 4, &m_4xMsaaQuality);
-	ASSERT_ERROR(SUCCEEDED(hr), "Error Checking Multi Sample Quality Levels. \n");
+	ASSERT_DEBUG(SUCCEEDED(hr), "Error Checking Multi Sample Quality Levels. \n");
 	ASSERT_WARNING( m_4xMsaaQuality > 0, "M4xMsaaQuality is 0, Multisampling with the given format and sample count combination is not supported for the installed graphics adapter.");
 
 
@@ -120,17 +120,17 @@ void GraphicsSystem::Init(HWND ghMainWnd)
 		ComPtr<IDXGIFactory> dxgiFactory;
 
 		m_device.As(&dxgiDevice);
-		ASSERT_ERROR(SUCCEEDED(hr), "Could not retrieve dxgiInterface.\n");
+		ASSERT_DEBUG(SUCCEEDED(hr), "Could not retrieve dxgiInterface.\n");
 
 		hr = dxgiDevice->GetParent(IID_PPV_ARGS(&dxgiAdapter));
-		ASSERT_ERROR(SUCCEEDED(hr), "Could not retrieve dxgiAdapter.\n");
+		ASSERT_DEBUG(SUCCEEDED(hr), "Could not retrieve dxgiAdapter.\n");
 		
 		hr = dxgiAdapter->GetParent(IID_PPV_ARGS(&dxgiFactory));
-		ASSERT_ERROR(SUCCEEDED(hr), "Could not retrieve dxgiFactory.\n");
+		ASSERT_DEBUG(SUCCEEDED(hr), "Could not retrieve dxgiFactory.\n");
 		
 		// Now, create the swap chain.
 		hr = dxgiFactory->CreateSwapChain(m_device.Get(), &sd, &m_swapChain);
-		ASSERT_ERROR(SUCCEEDED(hr), "Could not create SwapChain.\n");
+		ASSERT_DEBUG(SUCCEEDED(hr), "Could not create SwapChain.\n");
 	}
 
 	OnResize();
@@ -163,7 +163,7 @@ int GraphicsSystem::OnResize()
 	// Create RenderTargetView
 	ComPtr<ID3D11Texture2D> backBuffer;
 	hr = m_swapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), &backBuffer);
-	ASSERT_ERROR(SUCCEEDED(hr), "FAILED: Failed to get backbuffer from swap chain.\n");
+	ASSERT_DEBUG(SUCCEEDED(hr), "FAILED: Failed to get backbuffer from swap chain.\n");
 	m_device->CreateRenderTargetView(backBuffer.Get(), 0, &m_renderTargetView);
 
 	
@@ -183,10 +183,10 @@ int GraphicsSystem::OnResize()
 	depthStencilTextureDesc.SampleDesc.Quality = m_enable4xMsaa ? m_4xMsaaQuality-1 : 0;
 
 	hr = m_device->CreateTexture2D(&depthStencilTextureDesc, 0, &m_depthStencilBuffer);
-	ASSERT_ERROR(SUCCEEDED(hr), "FAILED: Failed to create depth stencil buffer.");
+	ASSERT_DEBUG(SUCCEEDED(hr), "FAILED: Failed to create depth stencil buffer.");
 	
 	hr = m_device->CreateDepthStencilView(m_depthStencilBuffer.Get(), 0, &m_depthStencilView); 
-	ASSERT_ERROR(SUCCEEDED(hr), "FAILED: Failed to create depth stencil view.");
+	ASSERT_DEBUG(SUCCEEDED(hr), "FAILED: Failed to create depth stencil view.");
 
 
 
