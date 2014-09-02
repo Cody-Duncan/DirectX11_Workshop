@@ -4,8 +4,7 @@ DirectX11_Workshop
 The DirectX Workshop is a DirectX 11 graphics framework in a Visual Studio 2013 project that demonstrates a NOT BASIC DirectX application. The basic projects you find in book are bare bones, built with poor architecture, and don't respond well to changes. This project endeavors to provide a framework for prototyping graphics ideas in DirectX 11. Simply, I need a workshop to test things out, and I am making it a goal to ensure the framework is friendly to newcomers.
 
 ###Dependencies
-===================
-
+------------------
 1. Visual Studio 2013 on Windows 7. Has great DirectX debugger, C++11, and C++ refactoring. All very convenient.
 
 2. DirectX Toolkit (DXTK). Plenty of handy boilerplate functions that are great for getting something on screen without having to write some sections of boilerplate code.
@@ -13,8 +12,7 @@ The DirectX Workshop is a DirectX 11 graphics framework in a Visual Studio 2013 
 3. Pempek Assert library. Great for having more robust and customizable asserts. Must have to catch those cases where the code fails as early as possible.
 
 ###Requirements
-===================
-
+------------------
 0. Framework - Provide functionality to make it easy to begin working on a graphics project; boilerplate code. 
  * Zero Startup Time. Should be able to get the repository, build, and run.
  * Having a framework to begin with will help focus on course concepts, save time in bug hunting, and show a better example of a usable graphics framework than the more atomic examples in introductory DirectX books.
