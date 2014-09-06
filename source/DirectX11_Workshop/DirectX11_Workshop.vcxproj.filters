@@ -36,6 +36,9 @@
     <ClCompile Include="include\Graphics\GraphicsBuffers.cpp">
       <Filter>Graphics</Filter>
     </ClCompile>
+    <ClCompile Include="src\String\StringAlgorithm.cpp">
+      <Filter>Strings</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Graphics">
@@ -49,6 +52,9 @@
     </Filter>
     <Filter Include="Debugging">
       <UniqueIdentifier>{d0790728-4962-404c-bfb8-085357975f1b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Strings">
+      <UniqueIdentifier>{d61794ea-09eb-4e72-8a3d-3062a02a031d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -109,6 +115,9 @@
     </ClInclude>
     <ClInclude Include="include\Graphics\GraphicsBuffers.h">
       <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\String\StringAlgorithm.h">
+      <Filter>Strings</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

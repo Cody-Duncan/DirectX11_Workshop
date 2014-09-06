@@ -67,6 +67,7 @@
     <ClCompile Include="src\Driver.cpp" />
     <ClCompile Include="src\Graphics\GraphicsSystem.cpp" />
     <ClCompile Include="src\Graphics\Shader.cpp" />
+    <ClCompile Include="src\String\StringAlgorithm.cpp" />
     <ClCompile Include="src\Timer\Stopwatch.cpp" />
     <ClCompile Include="src\WindowInput\InputState.cpp" />
     <ClCompile Include="src\WindowInput\RunningState.cpp" />
@@ -87,6 +88,7 @@
     <ClInclude Include="include\Graphics\Shader.h" />
     <ClInclude Include="include\Graphics\ShaderFactory.h" />
     <ClInclude Include="include\Graphics\Vertex.h" />
+    <ClInclude Include="include\String\StringAlgorithm.h" />
     <ClInclude Include="include\Timer\Stopwatch.h" />
     <ClInclude Include="include\WindowInput\InputState.h" />
     <ClInclude Include="include\WindowInput\RunningState.h" />
