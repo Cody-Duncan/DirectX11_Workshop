@@ -49,10 +49,16 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile />
     <Link />
+    <Link>
+      <AdditionalDependencies>D3DCompiler.lib; d3d11.lib;dxgi.lib;DXTK_Lib/x86/DirectXTKd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile />
     <Link />
+    <Link>
+      <AdditionalDependencies>D3DCompiler.lib; d3d11.lib;dxgi.lib;DXTK_Lib/x86/DirectXTK.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="include\Graphics\GraphicsBuffers.cpp" />
@@ -68,6 +74,7 @@
     <ClCompile Include="src\Graphics\GraphicsSystem.cpp" />
     <ClCompile Include="src\Graphics\Shader.cpp" />
     <ClCompile Include="src\Graphics\ShaderFactory.cpp" />
+    <ClCompile Include="src\Graphics\ShaderReflection.cpp" />
     <ClCompile Include="src\String\StringAlgorithm.cpp" />
     <ClCompile Include="src\Timer\Stopwatch.cpp" />
     <ClCompile Include="src\WindowInput\InputState.cpp" />
@@ -88,6 +95,7 @@
     <ClInclude Include="include\Graphics\GraphicsSystem.h" />
     <ClInclude Include="include\Graphics\Shader.h" />
     <ClInclude Include="include\Graphics\ShaderFactory.h" />
+    <ClInclude Include="include\Graphics\ShaderReflection.h" />
     <ClInclude Include="include\Graphics\Vertex.h" />
     <ClInclude Include="include\String\StringAlgorithm.h" />
     <ClInclude Include="include\Timer\Stopwatch.h" />

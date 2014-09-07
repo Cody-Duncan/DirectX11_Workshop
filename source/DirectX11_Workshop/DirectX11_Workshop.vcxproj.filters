@@ -42,6 +42,12 @@
     <ClCompile Include="src\Graphics\Shader.cpp">
       <Filter>Graphics</Filter>
     </ClCompile>
+    <ClCompile Include="src\Graphics\ShaderReflection.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Graphics\ShaderFactory.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Graphics">
@@ -118,6 +124,12 @@
     </ClInclude>
     <ClInclude Include="include\String\StringAlgorithm.h">
       <Filter>Strings</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Graphics\ShaderReflection.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Graphics\ShaderFactory.h">
+      <Filter>Graphics</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

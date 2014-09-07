@@ -1,6 +1,7 @@
 #include "Graphics\Shader.h"
 
-Shader::Shader()
+Shader::Shader() :
+	m_shaderInfo()
 {}
 
 Shader::Shader(D3D11_SHADER_VERSION_TYPE shaderType) 

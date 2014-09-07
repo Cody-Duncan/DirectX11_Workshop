@@ -15,6 +15,7 @@ private:
 	PixelShader*    _CreatePixelShader(ID3DBlob* blob);
 	GeometryShader* _CreateGeometryShader(ID3DBlob* blob);
 	ComputeShader*  _CreateComputeShader(ID3DBlob* blob);
+	void _LoadShader(ComPtr<ID3DBlob> shaderBlob);
 	
 public:
 	ShaderFactory(ID3D11Device* device);

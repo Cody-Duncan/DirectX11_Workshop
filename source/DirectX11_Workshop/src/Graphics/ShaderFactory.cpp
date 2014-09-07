@@ -1,5 +1,6 @@
 #include "Graphics\ShaderFactory.h"
 #include "String\StringAlgorithm.h"
+#include "Graphics\ShaderReflection.h"
 #include <d3dcompiler.h>
 
 ShaderFactory::ShaderFactory(ID3D11Device* device) : 
@@ -237,6 +238,14 @@ Shader* ShaderFactory::_BuildShaderObject(ComPtr<ID3DBlob> shaderBlob, std::stri
 	default:
 		ASSERT_DEBUG(false, "Shader type is not supported. Type is %d(%s)", shaderType, Convert_ShaderTypeEnum_String(shaderType));
 		break;
+	}
+
+	ASSERT_DEBUG(newShader != nullptr, "Failed to Create Shader Object.");
+	if (newShader != nullptr)
+	{
+		ID3D11ShaderReflection* pReflector = NULL;
+		D3DReflect(shaderBlob->GetBufferPointer(), shaderBlob->GetBufferSize(), IID_ID3D11ShaderReflection, (void**)&pReflector);
+		newShader->SetShaderInfo(BuildShaderReflectionData(pReflector));
 	}
 
 	return newShader;

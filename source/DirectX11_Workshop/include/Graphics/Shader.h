@@ -1,16 +1,20 @@
 #pragma once
 #include <D3d11shader.h> // D3D11_SHADER_VERSION_TYPE
 #include "ComPtr.h"
+#include "ShaderReflection.h"
 
 class Shader
 {
 private:
 	D3D11_SHADER_VERSION_TYPE m_shaderType;
+	ShaderInfo m_shaderInfo;
 
 public:
 	Shader();
 	Shader(D3D11_SHADER_VERSION_TYPE shaderType);
 	virtual ~Shader();
+
+	void SetShaderInfo(ShaderInfo&& shaderInfo) { m_shaderInfo = shaderInfo; }
 };
 
 
