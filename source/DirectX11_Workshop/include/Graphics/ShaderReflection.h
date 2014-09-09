@@ -1,5 +1,7 @@
 #pragma once
 
+#include <d3dcommon.h>
+
 struct ResourceInfo
 {
 	char                        Name[64];       // Name of the resource
@@ -54,6 +56,7 @@ struct ShaderInfo
 	unsigned int BoundResourceCount;
 	D3D_FEATURE_LEVEL MinFeatureLevel;
 
+	std::vector<ResourceInfo> ResourceInfo;
 	std::vector<D3D11_INPUT_ELEMENT_DESC> InputLayoutData;
 	std::vector<ConstantBufferInfo> ConstantBuffers;
 };

@@ -42,13 +42,15 @@ ShaderInfo BuildShaderReflectionData(ID3D11ShaderReflection* refData)
 	refData->GetMinFeatureLevel(&level);
 	shaderInfo.MinFeatureLevel = level;
 	
-	//---- Texture Samplers ----
+	//---- Shader Variables (Resources. Liked: Texture Samplers, Textures, Constant Buffers, etc) ----
+
 	for (unsigned i = 0; i < shaderInfo.BoundResourceCount; ++i)
 	{
 		D3D11_SHADER_INPUT_BIND_DESC resourceBindingDesc;
 		refData->GetResourceBindingDesc(i, &resourceBindingDesc);
 		
-		ResourceInfo resourceInfo;
+		shaderInfo.ResourceInfo.emplace_back();
+		ResourceInfo& resourceInfo = shaderInfo.ResourceInfo.back();
 		std::memcpy(resourceInfo.Name, resourceBindingDesc.Name, strlen(resourceBindingDesc.Name) + 1);
 		resourceInfo.Type       = resourceBindingDesc.Type;
 		resourceInfo.BindPoint  = resourceBindingDesc.BindPoint;
@@ -71,6 +73,7 @@ ShaderInfo BuildShaderReflectionData(ID3D11ShaderReflection* refData)
 		ASSERT_DEBUG(SUCCEEDED(hr), "Failed to get input parameter description. Input Parameter index: %d", i);
 		if (FAILED(hr))
 		{
+			inputLayoutDesc.clear();
 			continue;
 		}
 
@@ -92,9 +95,8 @@ ShaderInfo BuildShaderReflectionData(ID3D11ShaderReflection* refData)
 	}
 	shaderInfo.InputLayoutData = std::move(inputLayoutDesc);
 
-	// ---- Samplers ----
 
-	// ---- Constant Buffer ----
+	// ---- Constant Buffers ----
 	for (unsigned i = 0; i < shaderInfo.ConstantBufferCount; ++i)
 	{
 		ID3D11ShaderReflectionConstantBuffer* refConBuffer = refData->GetConstantBufferByIndex(i);
