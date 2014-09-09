@@ -67,6 +67,7 @@
     <ClCompile Include="src\Driver.cpp" />
     <ClCompile Include="src\Graphics\GraphicsSystem.cpp" />
     <ClCompile Include="src\Graphics\Shader.cpp" />
+    <ClCompile Include="src\Graphics\ShaderFactory.cpp" />
     <ClCompile Include="src\String\StringAlgorithm.cpp" />
     <ClCompile Include="src\Timer\Stopwatch.cpp" />
     <ClCompile Include="src\WindowInput\InputState.cpp" />
@@ -96,7 +97,6 @@
     <ClInclude Include="include\WindowInput\WindowInputInitializer.h" />
     <ClInclude Include="include\WindowInput\WindowSystem.h" />
     <ClInclude Include="pch.h" />
-    <ClInclude Include="src\Graphics\ShaderFactory.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

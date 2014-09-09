@@ -30,14 +30,17 @@
     <ClCompile Include="src\Graphics\GraphicsSystem.cpp">
       <Filter>Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="src\Graphics\Shader.cpp">
-      <Filter>Graphics</Filter>
-    </ClCompile>
     <ClCompile Include="include\Graphics\GraphicsBuffers.cpp">
       <Filter>Graphics</Filter>
     </ClCompile>
     <ClCompile Include="src\String\StringAlgorithm.cpp">
       <Filter>Strings</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Graphics\ShaderFactory.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Graphics\Shader.cpp">
+      <Filter>Graphics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -105,9 +108,6 @@
       <Filter>Graphics</Filter>
     </ClInclude>
     <ClInclude Include="include\Graphics\ShaderFactory.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Graphics\ShaderFactory.cpp">
       <Filter>Graphics</Filter>
     </ClInclude>
     <ClInclude Include="include\Graphics\Shader.h">

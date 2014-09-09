@@ -96,5 +96,15 @@ namespace String
 		tokenize(str, tokens);
 		return std::move(tokens);
 	}
-
+	
+	std::string SubstringAfter(std::string& str, std::string matchChars)
+	{
+		size_t loc = str.find_last_of(matchChars);
+		if (loc != std::string::npos)
+		{
+			return str.substr(loc);
+		}
+		
+		return std::string();
+	}
 }

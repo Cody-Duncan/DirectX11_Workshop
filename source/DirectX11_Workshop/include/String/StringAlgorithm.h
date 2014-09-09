@@ -16,6 +16,7 @@ namespace String
 	bool Ends_With(const std::string& str, const std::string& suffix);
 	bool Contains(const std::string& str, const std::string& containStr);
 
-
 	std::vector<std::string> Split(const std::string& str);
+
+	std::string SubstringAfter(std::string& str, std::string matchChars);
 }
