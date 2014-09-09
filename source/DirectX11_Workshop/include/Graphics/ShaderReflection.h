@@ -1,18 +1,19 @@
 #pragma once
 
+struct ID3D11ShaderReflection;
 #include <d3dcommon.h>
 
 struct ResourceInfo
 {
 	char                        Name[64];       // Name of the resource
 	D3D_SHADER_INPUT_TYPE       Type;           // Type of resource (e.g. texture, cbuffer, etc.)
-	unsigned int                BindPoint;      // Starting bind point
+	unsigned int                BindPoint;      // Starting bind point (register). A BindPoint 0 for a texture means it is bound to register t0.
 	unsigned int                BindCount;      // Number of contiguous bind points (for arrays)
 
 	unsigned int                uFlags;         // Input binding flags
 	D3D_RESOURCE_RETURN_TYPE    ReturnType;     // Return type (if texture)
 	D3D_SRV_DIMENSION           Dimension;      // Dimension (if texture)
-	unsigned int                NumSamples;     // Number of samples (0 if not MS texture)
+	unsigned int                NumSamples;     // Number of samples (0 if not MultiSampled texture)
 };
 
 struct VariableInfo
@@ -51,15 +52,16 @@ struct ConstantBufferInfo
 
 struct ShaderInfo
 {
-	unsigned int ConstantBufferCount;
-	unsigned int InputParameterCount;
-	unsigned int BoundResourceCount;
-	D3D_FEATURE_LEVEL MinFeatureLevel;
+	unsigned int ConstantBufferCount;		// Number of Constant Buffers
+	unsigned int InputParameterCount;		// Number of Input Parameters (number of elements in input layout)
+	unsigned int BoundResourceCount;		// Number of Resources (Global Variables) on shader.
+	D3D_FEATURE_LEVEL MinFeatureLevel;		// Minimum DirectX feature level supported by this shader.
 
-	std::vector<ResourceInfo> ResourceInfo;
-	std::vector<D3D11_INPUT_ELEMENT_DESC> InputLayoutData;
-	std::vector<ConstantBufferInfo> ConstantBuffers;
+	std::vector<ResourceInfo> ResourceInfo;					// Information about the Resources (Global Variables) on the shader.
+	std::vector<D3D11_INPUT_ELEMENT_DESC> InputLayoutData;  // Information about the Input Parameters, used to build Input Layout.
+	std::vector<ConstantBufferInfo> ConstantBuffers;        // Information about the Constant Buffers
 };
+
 
 ShaderInfo BuildShaderReflectionData(ID3D11ShaderReflection* refData);
 

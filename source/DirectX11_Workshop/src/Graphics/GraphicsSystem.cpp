@@ -1,5 +1,6 @@
 #include "Graphics\GraphicsSystem.h"
 #include <memory>	                 // shared_ptr 
+#include "Graphics\ShaderFactory.h"
 
 
 GraphicsSystem::GraphicsSystem()
@@ -134,6 +135,9 @@ void GraphicsSystem::Init(HWND ghMainWnd)
 	}
 
 	OnResize();
+
+	ShaderFactory factory(m_device.Get());
+	factory.BuildSourceShader("SimpleShaderPixel.hlsl", "main", "ps_5_0");
 }
 
 int GraphicsSystem::OnResize()
