@@ -65,6 +65,7 @@
     <ClCompile Include="src\Debugging\DebugOutput.cpp" />
     <ClCompile Include="src\Debugging\pempek_assert.cpp" />
     <ClCompile Include="src\Driver.cpp" />
+    <ClCompile Include="src\Graphics\Geometry\GeometryGenerator.cpp" />
     <ClCompile Include="src\Graphics\GraphicsSystem.cpp" />
     <ClCompile Include="src\Graphics\Shader.cpp" />
     <ClCompile Include="src\Graphics\ShaderFactory.cpp" />
@@ -83,7 +84,9 @@
     <ClInclude Include="include\Debugging\pempek_assert.h" />
     <ClInclude Include="include\Graphics\ComPtr.h" />
     <ClInclude Include="include\Graphics\ConstantBuffer.h" />
+    <ClInclude Include="include\Graphics\CreateBuffer.h" />
     <ClInclude Include="include\Graphics\DirectX_GraphicsDevice.h" />
+    <ClInclude Include="include\Graphics\Geometry\GeometryGenerator.h" />
     <ClInclude Include="include\Graphics\GraphicsBuffers.h" />
     <ClInclude Include="include\Graphics\GraphicsSystem.h" />
     <ClInclude Include="include\Graphics\Shader.h" />
@@ -97,6 +100,9 @@
     <ClInclude Include="include\WindowInput\WindowInputInitializer.h" />
     <ClInclude Include="include\WindowInput\WindowSystem.h" />
     <ClInclude Include="pch.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="include\Graphics\Geometry\TeapotData.inc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

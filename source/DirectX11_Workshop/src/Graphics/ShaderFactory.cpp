@@ -164,6 +164,19 @@ HRESULT CreateInputLayoutDescFromVertexShaderSignature(ID3DBlob* pShaderBlob, ID
 	return hr;
 }
 
+D3D11_INPUT_ELEMENT_DESC defaultLayout[] =
+{
+	{ "POSITION" , 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0 , D3D11_INPUT_PER_VERTEX_DATA, 0 },
+	{ "NORMAL"   , 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 12, D3D11_INPUT_PER_VERTEX_DATA, 0 },
+};
+unsigned int defaultLayoutSize = sizeof(defaultLayout) / sizeof(defaultLayout[0]);
+
+HRESULT CreateInputLayoutDefault(ID3DBlob* pShaderBlob, ID3D11Device* pD3DDevice, ID3D11InputLayout** pInputLayout)
+{
+	HRESULT hr = pD3DDevice->CreateInputLayout(defaultLayout, defaultLayoutSize, pShaderBlob->GetBufferPointer(), pShaderBlob->GetBufferSize(), pInputLayout);
+	return hr;
+}
+
 
 /* ---------- Create Shader Object ----------*/
 
@@ -186,7 +199,7 @@ Shader*   ShaderFactory::_CreateVertexShader(ID3DBlob* blob)
 
 	// -- Create Input Layout --
 	ID3D11InputLayout* newInputLayout;
-	hr = CreateInputLayoutDescFromVertexShaderSignature(blob, m_device, &newInputLayout);
+	hr = CreateInputLayoutDefault(blob, m_device, &newInputLayout);
 	ASSERT_DEBUG(SUCCEEDED(hr), "Failed to build the input layout");
 	m_inputLayouts.emplace_back(newInputLayout);
 	newShader.m_inputLayout = m_inputLayouts.back().Get();

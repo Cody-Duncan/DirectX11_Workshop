@@ -1,6 +1,7 @@
 #include "Graphics\GraphicsSystem.h"
 #include <memory>	                 // shared_ptr 
-
+#include "Graphics\Geometry\GeometryGenerator.h"
+#include "Graphics\CreateBuffer.h"
 
 GraphicsSystem::GraphicsSystem() 
 {
@@ -139,6 +140,17 @@ void GraphicsSystem::Init(HWND ghMainWnd)
 	}
 
 	OnResize();
+
+	//Generate a Shape to render.
+	shape = GeometryGenerator::CreateTeapot();
+
+	ID3D11Buffer* vertexBuffer;
+	CreateBuffer(m_device.Get(), shape.get()->m_Vertices, D3D11_BIND_FLAG::D3D11_BIND_VERTEX_BUFFER, "Shape_Vertex_Buffer", &vertexBuffer);
+	shape_vertices = vertexBuffer;
+
+	ID3D11Buffer* indexBuffer;
+	CreateBuffer(m_device.Get(), shape.get()->m_Vertices, D3D11_BIND_FLAG::D3D11_BIND_INDEX_BUFFER, "Shape_Index_Buffer", &indexBuffer);
+	shape_indices = indexBuffer;
 }
 
 int GraphicsSystem::OnResize()
@@ -246,11 +258,12 @@ void GraphicsSystem::Update()
 	ASSERT_DEBUG(m_pVertexShader, "Pixel Shader is null.");
 
 	//========== BEGIN DRAW PHASE ==========//
-
+	unsigned offset = 0;
+	unsigned stride = sizeof(DirectX::VertexPositionNormalTexture);
 	// -- Set Inputs --
 	m_deviceContext->IASetInputLayout(m_pVertexShader->m_inputLayout);
-	//m_deviceContext->IASetVertexBuffers(0, 1, &vertexBuffer, &VertexDescription::Desc[1].SizeOfVertex, &offset);
-	//m_deviceContext->IASetIndexBuffer(indexBuffer, DXGI_FORMAT_R32_UINT, 0);
+	m_deviceContext->IASetVertexBuffers(0, 1, shape_vertices.GetAddressOf(), &stride, &offset);
+	m_deviceContext->IASetIndexBuffer(shape_indices.Get(), DXGI_FORMAT_R32_UINT, 0);
 	m_deviceContext->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
 	// -- Vertex Shader --
@@ -266,6 +279,7 @@ void GraphicsSystem::Update()
 	//========== DRAW PHASE ==========//
 	ClearRenderTarget();
 
+	//this->m_deviceContext->DrawIndexed(model->mesh->NumIndices, model->CommonIndexBufferOffset, model->CommonVertexBufferOffset);
 
 	//========== END DRAW PHASE ==========//
 	SwapBuffers();

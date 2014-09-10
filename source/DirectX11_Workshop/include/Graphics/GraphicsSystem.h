@@ -5,7 +5,9 @@
 #include "Graphics\ComPtr.h"
 #include "Graphics\ShaderFactory.h"
 
+
 class ShaderFactory;
+class Geometry;
 
 class GraphicsSystem
 {
@@ -61,6 +63,10 @@ private:
 
 	Shader* m_pVertexShader;
 	Shader* m_pPixelShader;
+
+	std::unique_ptr<Geometry> shape;
+	ComPtr<ID3D11Buffer> shape_vertices;
+	ComPtr<ID3D11Buffer> shape_indices;
 
 	void _SetShader(Shader* shader);
 };
