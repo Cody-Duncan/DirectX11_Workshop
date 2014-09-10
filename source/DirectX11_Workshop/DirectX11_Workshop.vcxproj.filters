@@ -42,6 +42,9 @@
     <ClCompile Include="src\Graphics\Shader.cpp">
       <Filter>Graphics</Filter>
     </ClCompile>
+    <ClCompile Include="src\Graphics\Geometry\GeometryGenerator.cpp">
+      <Filter>Graphics\Geometry</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Graphics">
@@ -58,6 +61,9 @@
     </Filter>
     <Filter Include="Strings">
       <UniqueIdentifier>{d61794ea-09eb-4e72-8a3d-3062a02a031d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\Geometry">
+      <UniqueIdentifier>{b06ad6a1-2bb1-4d33-91bf-e665c4095d92}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -119,5 +125,16 @@
     <ClInclude Include="include\String\StringAlgorithm.h">
       <Filter>Strings</Filter>
     </ClInclude>
+    <ClInclude Include="include\Graphics\Geometry\GeometryGenerator.h">
+      <Filter>Graphics\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Graphics\CreateBuffer.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="include\Graphics\Geometry\TeapotData.inc">
+      <Filter>Graphics\Geometry</Filter>
+    </None>
   </ItemGroup>
 </Project>
