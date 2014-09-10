@@ -13,6 +13,10 @@ private:
 	std::vector<Shader> m_geometryShaders;
 	std::vector<Shader> m_computeShaders;
 
+	std::vector<ComPtr<ID3D11InputLayout>> m_inputLayouts;
+
+	
+
 	Shader* _BuildShaderObject(ComPtr<ID3DBlob> shaderBlob, std::string shaderFilename, D3D11_SHADER_VERSION_TYPE shaderType);
 
 	Shader*  _CreateVertexShader(ID3DBlob* blob);

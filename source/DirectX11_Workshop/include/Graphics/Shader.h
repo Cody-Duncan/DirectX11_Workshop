@@ -13,6 +13,7 @@ public:
 		ID3D11GeometryShader* m_geometryShader;
 		ID3D11ComputeShader*  m_computeShader;
 	};
+	ID3D11InputLayout* m_inputLayout = nullptr;
 
 	enum ShaderType
 	{

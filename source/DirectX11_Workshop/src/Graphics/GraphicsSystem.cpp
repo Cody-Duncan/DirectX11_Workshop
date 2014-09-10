@@ -242,11 +242,24 @@ void GraphicsSystem::Update()
 	ASSERT_DEBUG(m_deviceContext, "Device Context is null.");
 	ASSERT_DEBUG(m_swapChain, "Swap chain is null.");
 
-	//========== BEGIN DRAW PHASE ==========//
-	//m_deviceContext->IASetInputLayout();
-	//m_deviceContext->VSSetShader();
-	//m_deviceContext->PSSetShader();
+	ASSERT_DEBUG(m_pVertexShader, "Vertex Shader is null.");
+	ASSERT_DEBUG(m_pVertexShader, "Pixel Shader is null.");
 
+	//========== BEGIN DRAW PHASE ==========//
+
+	// -- Set Inputs --
+	m_deviceContext->IASetInputLayout(m_pVertexShader->m_inputLayout);
+	//m_deviceContext->IASetVertexBuffers(0, 1, &vertexBuffer, &VertexDescription::Desc[1].SizeOfVertex, &offset);
+	//m_deviceContext->IASetIndexBuffer(indexBuffer, DXGI_FORMAT_R32_UINT, 0);
+	m_deviceContext->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+
+	// -- Vertex Shader --
+	m_deviceContext->VSSetShader(m_pVertexShader->m_vertexShader, nullptr, 0);
+
+	// -- Pixel Shader --
+	m_deviceContext->PSSetShader(m_pPixelShader->m_pixelShader, nullptr, 0);
+
+	// -- Output Merger --
 	float blendFactor[4] = {0.0f, 0.0f, 0.0f, 0.0f};
 	m_deviceContext->OMSetBlendState(m_commonStates.get()->Opaque(), blendFactor, 0xffffffff);
 
@@ -264,16 +277,22 @@ void GraphicsSystem::SwapBuffers()
 	ASSERT_DEBUG(SUCCEEDED(hr), "Swap chain swapping failed.");
 }
 
+
+
+//===============================================================================//
+//                               PRIVATE FUNCTIONS                               //
+//===============================================================================//
+
 void GraphicsSystem::_SetShader(Shader* shader)
 {
 	switch (shader->GetShaderType())
 	{
 	case Shader::SHADER_VERTEX:
-		this->m_deviceContext->VSSetShader(shader->m_vertexShader, nullptr, 0);
+		m_pVertexShader = shader;
 		break;
 
 	case Shader::SHADER_PIXEL:
-		this->m_deviceContext->PSSetShader(shader->m_pixelShader, nullptr, 0);
+		m_pPixelShader = shader;
 		break;
 	}
 }

@@ -59,5 +59,8 @@ private:
 	
 	ShaderFactory* m_shaderFactory      = nullptr;
 
+	Shader* m_pVertexShader;
+	Shader* m_pPixelShader;
+
 	void _SetShader(Shader* shader);
 };

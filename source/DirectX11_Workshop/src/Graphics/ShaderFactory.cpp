@@ -94,12 +94,82 @@ HRESULT CompileShaderFromFile(const wchar_t* szFileName, const char* szEntryPoin
 	return S_OK;
 }
 
+/* ----------  Build Input Layout ----------*/
+
+//Function Creates an input layout from the vertex shader, after compilation.
+//Input layout can be reused with any vertex shaders that use the same input layout.
+HRESULT CreateInputLayoutDescFromVertexShaderSignature(ID3DBlob* pShaderBlob, ID3D11Device* pD3DDevice, ID3D11InputLayout** pInputLayout)
+{
+	// Reflect shader info
+	ID3D11ShaderReflection* pVertexShaderReflection = nullptr;
+	HRESULT hr = S_OK;
+	if (FAILED(D3DReflect(pShaderBlob->GetBufferPointer(), pShaderBlob->GetBufferSize(), IID_ID3D11ShaderReflection, (void**)&pVertexShaderReflection)))
+	{
+		return S_FALSE;
+	}
+	// get shader description
+	D3D11_SHADER_DESC shaderDesc;
+	pVertexShaderReflection->GetDesc(&shaderDesc);
+	// Read input layout description from shader info
+	unsigned int byteOffset = 0;
+	std::vector<D3D11_INPUT_ELEMENT_DESC> inputLayoutDesc;
+	for (unsigned int i = 0; i< shaderDesc.InputParameters; ++i)
+	{
+		D3D11_SIGNATURE_PARAMETER_DESC paramDesc;
+		pVertexShaderReflection->GetInputParameterDesc(i, &paramDesc);
+		// create input element desc
+		D3D11_INPUT_ELEMENT_DESC elementDesc;
+		elementDesc.SemanticName = paramDesc.SemanticName;
+		elementDesc.SemanticIndex = paramDesc.SemanticIndex;
+		elementDesc.InputSlot = 0;
+		elementDesc.AlignedByteOffset = byteOffset;
+		elementDesc.InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
+		elementDesc.InstanceDataStepRate = 0;
+		// determine DXGI format
+		if (paramDesc.Mask == 1)
+		{
+			if (paramDesc.ComponentType == D3D_REGISTER_COMPONENT_UINT32) elementDesc.Format = DXGI_FORMAT_R32_UINT;
+			else if (paramDesc.ComponentType == D3D_REGISTER_COMPONENT_SINT32) elementDesc.Format = DXGI_FORMAT_R32_SINT;
+			else if (paramDesc.ComponentType == D3D_REGISTER_COMPONENT_FLOAT32) elementDesc.Format = DXGI_FORMAT_R32_FLOAT;
+			byteOffset += 4;
+		}
+		else if (paramDesc.Mask <= 3)
+		{
+			if (paramDesc.ComponentType == D3D_REGISTER_COMPONENT_UINT32) elementDesc.Format = DXGI_FORMAT_R32G32_UINT;
+			else if (paramDesc.ComponentType == D3D_REGISTER_COMPONENT_SINT32) elementDesc.Format = DXGI_FORMAT_R32G32_SINT;
+			else if (paramDesc.ComponentType == D3D_REGISTER_COMPONENT_FLOAT32) elementDesc.Format = DXGI_FORMAT_R32G32_FLOAT;
+			byteOffset += 8;
+		}
+		else if (paramDesc.Mask <= 7)
+		{
+			if (paramDesc.ComponentType == D3D_REGISTER_COMPONENT_UINT32) elementDesc.Format = DXGI_FORMAT_R32G32B32_UINT;
+			else if (paramDesc.ComponentType == D3D_REGISTER_COMPONENT_SINT32) elementDesc.Format = DXGI_FORMAT_R32G32B32_SINT;
+			else if (paramDesc.ComponentType == D3D_REGISTER_COMPONENT_FLOAT32) elementDesc.Format = DXGI_FORMAT_R32G32B32_FLOAT;
+			byteOffset += 12;
+		}
+		else if (paramDesc.Mask <= 15)
+		{
+			if (paramDesc.ComponentType == D3D_REGISTER_COMPONENT_UINT32) elementDesc.Format = DXGI_FORMAT_R32G32B32A32_UINT;
+			else if (paramDesc.ComponentType == D3D_REGISTER_COMPONENT_SINT32) elementDesc.Format = DXGI_FORMAT_R32G32B32A32_SINT;
+			else if (paramDesc.ComponentType == D3D_REGISTER_COMPONENT_FLOAT32) elementDesc.Format = DXGI_FORMAT_R32G32B32A32_FLOAT;
+			byteOffset += 16;
+		}
+		//save element desc
+		inputLayoutDesc.push_back(elementDesc);
+	}
+	// Try to create Input Layout
+	hr = pD3DDevice->CreateInputLayout(&inputLayoutDesc[0], inputLayoutDesc.size(), pShaderBlob->GetBufferPointer(), pShaderBlob->GetBufferSize(), pInputLayout);
+
+	pVertexShaderReflection->Release();
+	return hr;
+}
+
 
 /* ---------- Create Shader Object ----------*/
 
 Shader*   ShaderFactory::_CreateVertexShader(ID3DBlob* blob)
 {
-
+	// -- Create Vertex Shader --
 	ID3D11VertexShader* vertexShader;
 	HRESULT hr = m_device->CreateVertexShader(
 		blob->GetBufferPointer(),
@@ -111,7 +181,17 @@ Shader*   ShaderFactory::_CreateVertexShader(ID3DBlob* blob)
 	ASSERT_DEBUG(SUCCEEDED(hr), "Failed to Create Vertex Shader");
 
 	m_vertexShaders.emplace_back(vertexShader);
-	return &m_vertexShaders.back();
+	Shader& newShader = m_vertexShaders.back();
+
+
+	// -- Create Input Layout --
+	ID3D11InputLayout* newInputLayout;
+	hr = CreateInputLayoutDescFromVertexShaderSignature(blob, m_device, &newInputLayout);
+	ASSERT_DEBUG(SUCCEEDED(hr), "Failed to build the input layout");
+	m_inputLayouts.emplace_back(newInputLayout);
+	newShader.m_inputLayout = m_inputLayouts.back().Get();
+
+	return &newShader;
 }
 
 Shader*    ShaderFactory::_CreatePixelShader(ID3DBlob* blob)
