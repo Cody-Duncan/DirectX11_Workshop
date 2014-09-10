@@ -2,7 +2,7 @@
 #include <memory>	                 // shared_ptr 
 
 
-GraphicsSystem::GraphicsSystem()
+GraphicsSystem::GraphicsSystem() 
 {
 }
 
@@ -13,6 +13,9 @@ GraphicsSystem::~GraphicsSystem()
 
 void GraphicsSystem::DeInit()
 {
+	if (m_shaderFactory)
+		delete m_shaderFactory; 
+
 	if(m_deviceContext)
 		m_deviceContext->ClearState();
 
@@ -73,6 +76,8 @@ void GraphicsSystem::Init(HWND ghMainWnd)
 	ASSERT_DEBUG(SUCCEEDED(hr), "Error Checking Multi Sample Quality Levels. \n");
 	ASSERT_WARNING( m_4xMsaaQuality > 0, "M4xMsaaQuality is 0, Multisampling with the given format and sample count combination is not supported for the installed graphics adapter.");
 
+	//============= Create Shader Factory =============
+	m_shaderFactory = new ShaderFactory(m_device.Get());
 
 	//============= Create Common States =============
 	using namespace DirectX;
@@ -212,6 +217,18 @@ int GraphicsSystem::OnResize()
 	return 0;
 }
 
+void GraphicsSystem::LoadCompiledShader(std::string shaderFilename, D3D11_SHADER_VERSION_TYPE shaderType)
+{
+	Shader* shader = m_shaderFactory->BuildCompiledShader(shaderFilename, shaderType);
+	_SetShader(shader);
+}
+
+void GraphicsSystem::LoadSourceShader(std::string shaderFilename, std::string EntryPoint, std::string ShaderModel)
+{
+	Shader* shader = m_shaderFactory->BuildSourceShader(shaderFilename, EntryPoint, ShaderModel);
+	_SetShader(shader);
+}
+
 void GraphicsSystem::ClearRenderTarget()
 {
 	m_deviceContext->ClearRenderTargetView(m_renderTargetView.Get(), (float*)&m_ClearColor);
@@ -247,3 +264,16 @@ void GraphicsSystem::SwapBuffers()
 	ASSERT_DEBUG(SUCCEEDED(hr), "Swap chain swapping failed.");
 }
 
+void GraphicsSystem::_SetShader(Shader* shader)
+{
+	switch (shader->GetShaderType())
+	{
+	case Shader::SHADER_VERTEX:
+		this->m_deviceContext->VSSetShader(shader->m_vertexShader, nullptr, 0);
+		break;
+
+	case Shader::SHADER_PIXEL:
+		this->m_deviceContext->PSSetShader(shader->m_pixelShader, nullptr, 0);
+		break;
+	}
+}

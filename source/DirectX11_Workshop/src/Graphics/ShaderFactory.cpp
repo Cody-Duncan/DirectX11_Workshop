@@ -85,8 +85,8 @@ HRESULT CompileShaderFromFile(const wchar_t* szFileName, const char* szEntryPoin
 
 	ASSERT_DEBUG(SUCCEEDED(hr), 
 		"Failed to compile shader\n"
-		"Shader Filename: %ls\n"
-		"Error Message: %s", 
+		"Shader Filename: %ls\n\n"
+		"Error Message: %s\n", 
 		szFileName, 
 		(char*)pErrorBlob->GetBufferPointer()
 	);
@@ -110,7 +110,8 @@ Shader*   ShaderFactory::_CreateVertexShader(ID3DBlob* blob)
 
 	ASSERT_DEBUG(SUCCEEDED(hr), "Failed to Create Vertex Shader");
 
-	return new Shader(vertexShader);
+	m_vertexShaders.emplace_back(vertexShader);
+	return &m_vertexShaders.back();
 }
 
 Shader*    ShaderFactory::_CreatePixelShader(ID3DBlob* blob)
@@ -125,7 +126,8 @@ Shader*    ShaderFactory::_CreatePixelShader(ID3DBlob* blob)
 
 	ASSERT_DEBUG(SUCCEEDED(hr), "Failed to Create Pixel Shader");
 
-	return new Shader(pixelShader);
+	m_pixelShaders.emplace_back(pixelShader);
+	return &m_pixelShaders.back();
 }
 
 Shader* ShaderFactory::_CreateGeometryShader(ID3DBlob* blob)
@@ -140,7 +142,8 @@ Shader* ShaderFactory::_CreateGeometryShader(ID3DBlob* blob)
 
 	ASSERT_DEBUG(SUCCEEDED(hr), "Failed to Create Geometry Shader");
 
-	return new Shader(geometryShader);
+	m_geometryShaders.emplace_back(geometryShader);
+	return &m_geometryShaders.back();
 }
 
 Shader*  ShaderFactory::_CreateComputeShader(ID3DBlob* blob)
@@ -155,7 +158,8 @@ Shader*  ShaderFactory::_CreateComputeShader(ID3DBlob* blob)
 
 	ASSERT_DEBUG(SUCCEEDED(hr), "Failed to Create Compute Shader");
 
-	return new Shader(computeShader);
+	m_computeShaders.emplace_back(computeShader);
+	return &m_computeShaders.back();
 }
 
 

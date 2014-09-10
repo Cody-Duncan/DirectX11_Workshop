@@ -41,4 +41,51 @@ Shader::~Shader()
 	}
 }
 
+Shader& Shader::operator = (ID3D11VertexShader* pShader)
+{
+	SetShader(pShader); 
+	return *this;
+}
 
+Shader& Shader::operator=(ID3D11PixelShader* pShader)
+{
+	SetShader(pShader);
+	return *this;
+}
+
+Shader& Shader::operator=(ID3D11GeometryShader* pShader)
+{
+	SetShader(pShader);
+	return *this;
+}
+
+Shader& Shader::operator=(ID3D11ComputeShader* pShader)
+{
+	SetShader(pShader);
+	return *this;
+}
+
+
+void Shader::SetShader(ID3D11VertexShader* pShader)
+{
+	m_shaderType = D3D11_SHADER_VERSION_TYPE::D3D11_SHVER_VERTEX_SHADER;
+	m_vertexShader = pShader;
+}
+
+void Shader::SetShader(ID3D11PixelShader* pShader)
+{
+	m_shaderType = D3D11_SHADER_VERSION_TYPE::D3D11_SHVER_PIXEL_SHADER;
+	m_pixelShader = pShader;
+}
+
+void Shader::SetShader(ID3D11GeometryShader* pShader)
+{
+	m_shaderType = D3D11_SHADER_VERSION_TYPE::D3D11_SHVER_GEOMETRY_SHADER;
+	m_geometryShader = pShader;
+}
+
+void Shader::SetShader(ID3D11ComputeShader* pShader)
+{
+	m_shaderType = D3D11_SHADER_VERSION_TYPE::D3D11_SHVER_COMPUTE_SHADER;
+	m_computeShader = pShader;
+}

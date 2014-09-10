@@ -9,6 +9,8 @@ int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLin
 	InitializeWindowAndInput("DirectX11 Interface Test", 1280, 720);
 	GraphicsSystem graphics;
 	graphics.Init(ghMainWnd);
+	graphics.LoadSourceShader("VertexShader.hlsl", "main", "vs_5_0");
+	graphics.LoadSourceShader("PixelShader.hlsl", "main", "ps_5_0");
 
 	StartRunning();
 	while(IsRunning())

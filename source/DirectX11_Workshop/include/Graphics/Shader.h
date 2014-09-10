@@ -4,7 +4,7 @@
 
 class Shader
 {
-private:
+public:
 	D3D11_SHADER_VERSION_TYPE m_shaderType;
 	union
 	{
@@ -14,12 +14,33 @@ private:
 		ID3D11ComputeShader*  m_computeShader;
 	};
 
-public:
+	enum ShaderType
+	{
+		SHADER_VERTEX   = D3D11_SHADER_VERSION_TYPE::D3D11_SHVER_VERTEX_SHADER,
+		SHADER_PIXEL    = D3D11_SHADER_VERSION_TYPE::D3D11_SHVER_PIXEL_SHADER,
+		SHADER_GEOMETRY = D3D11_SHADER_VERSION_TYPE::D3D11_SHVER_GEOMETRY_SHADER,
+		SHADER_COMPUTE  = D3D11_SHADER_VERSION_TYPE::D3D11_SHVER_COMPUTE_SHADER,
+	};
+
 	Shader();
 	Shader(ID3D11VertexShader*);
 	Shader(ID3D11PixelShader*);
 	Shader(ID3D11GeometryShader*);
 	Shader(ID3D11ComputeShader*);
 	virtual ~Shader();
-};
 
+	Shader& operator=(ID3D11VertexShader*);
+	Shader& operator=(ID3D11PixelShader*);
+	Shader& operator=(ID3D11GeometryShader*);
+	Shader& operator=(ID3D11ComputeShader*);
+
+	void SetShader(ID3D11VertexShader*  );
+	void SetShader(ID3D11PixelShader*   );
+	void SetShader(ID3D11GeometryShader*);
+	void SetShader(ID3D11ComputeShader* );
+
+	ShaderType GetShaderType()
+	{
+		return (ShaderType)m_shaderType;
+	}
+};

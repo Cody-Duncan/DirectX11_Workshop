@@ -3,6 +3,9 @@
 #include <dxgi.h>
 #include <d3d11.h>
 #include "Graphics\ComPtr.h"
+#include "Graphics\ShaderFactory.h"
+
+class ShaderFactory;
 
 class GraphicsSystem
 {
@@ -11,12 +14,15 @@ public:
 	~GraphicsSystem();
 
 	void Init(HWND ghMainWnd);
+	int OnResize();
 	void Update();
 	void DeInit();
-	int OnResize();
 
 	void ClearRenderTarget();
 	void SwapBuffers();
+
+	void LoadCompiledShader(std::string shaderFilename, D3D11_SHADER_VERSION_TYPE shaderType);
+	void LoadSourceShader(std::string shaderFilename, std::string EntryPoint, std::string ShaderModel);
 	
 private:
 	
@@ -51,7 +57,7 @@ private:
 	Vector4	           m_ClearColor     = Vector4(0.1f, 0.1f, 0.1f, 1.0f);
 	Vector4            m_MeshColor      = Vector4(0.9f, 0.0f, 0.9f, 1.0f);
 	
-	ID3D11VertexShader* m_vertexShader = nullptr;
-	ID3D11PixelShader*  m_pixelShader  = nullptr;
-	ID3D11InputLayout*  m_inputLayout  = nullptr;
+	ShaderFactory* m_shaderFactory      = nullptr;
+
+	void _SetShader(Shader* shader);
 };
