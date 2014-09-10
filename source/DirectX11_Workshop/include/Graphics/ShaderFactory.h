@@ -11,10 +11,10 @@ private:
 	std::vector<Shader> m_shaders;
 	Shader* _BuildShaderObject(ComPtr<ID3DBlob> shaderBlob, std::string shaderFilename, D3D11_SHADER_VERSION_TYPE shaderType);
 
-	VertexShader*   _CreateVertexShader(ID3DBlob* blob);
-	PixelShader*    _CreatePixelShader(ID3DBlob* blob);
-	GeometryShader* _CreateGeometryShader(ID3DBlob* blob);
-	ComputeShader*  _CreateComputeShader(ID3DBlob* blob);
+	Shader*  _CreateVertexShader(ID3DBlob* blob);
+	Shader*  _CreatePixelShader(ID3DBlob* blob);
+	Shader*  _CreateGeometryShader(ID3DBlob* blob);
+	Shader*  _CreateComputeShader(ID3DBlob* blob);
 	
 public:
 	ShaderFactory(ID3D11Device* device);

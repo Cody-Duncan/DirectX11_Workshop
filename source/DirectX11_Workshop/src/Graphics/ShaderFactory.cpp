@@ -97,7 +97,7 @@ HRESULT CompileShaderFromFile(const wchar_t* szFileName, const char* szEntryPoin
 
 /* ---------- Create Shader Object ----------*/
 
-VertexShader*   ShaderFactory::_CreateVertexShader(ID3DBlob* blob)
+Shader*   ShaderFactory::_CreateVertexShader(ID3DBlob* blob)
 {
 
 	ID3D11VertexShader* vertexShader;
@@ -110,10 +110,10 @@ VertexShader*   ShaderFactory::_CreateVertexShader(ID3DBlob* blob)
 
 	ASSERT_DEBUG(SUCCEEDED(hr), "Failed to Create Vertex Shader");
 
-	return new VertexShader(vertexShader);
+	return new Shader(vertexShader);
 }
 
-PixelShader*    ShaderFactory::_CreatePixelShader(ID3DBlob* blob)
+Shader*    ShaderFactory::_CreatePixelShader(ID3DBlob* blob)
 {
 	ID3D11PixelShader* pixelShader;
 	HRESULT hr = m_device->CreatePixelShader(
@@ -125,10 +125,10 @@ PixelShader*    ShaderFactory::_CreatePixelShader(ID3DBlob* blob)
 
 	ASSERT_DEBUG(SUCCEEDED(hr), "Failed to Create Pixel Shader");
 
-	return new PixelShader(pixelShader);
+	return new Shader(pixelShader);
 }
 
-GeometryShader* ShaderFactory::_CreateGeometryShader(ID3DBlob* blob)
+Shader* ShaderFactory::_CreateGeometryShader(ID3DBlob* blob)
 {
 	ID3D11GeometryShader* geometryShader;
 	HRESULT hr = m_device->CreateGeometryShader(
@@ -140,10 +140,10 @@ GeometryShader* ShaderFactory::_CreateGeometryShader(ID3DBlob* blob)
 
 	ASSERT_DEBUG(SUCCEEDED(hr), "Failed to Create Geometry Shader");
 
-	return new GeometryShader(geometryShader);
+	return new Shader(geometryShader);
 }
 
-ComputeShader*  ShaderFactory::_CreateComputeShader(ID3DBlob* blob)
+Shader*  ShaderFactory::_CreateComputeShader(ID3DBlob* blob)
 {
 	ID3D11ComputeShader* computeShader;
 	HRESULT hr = m_device->CreateComputeShader(
@@ -155,7 +155,7 @@ ComputeShader*  ShaderFactory::_CreateComputeShader(ID3DBlob* blob)
 
 	ASSERT_DEBUG(SUCCEEDED(hr), "Failed to Create Compute Shader");
 
-	return new ComputeShader(computeShader);
+	return new Shader(computeShader);
 }
 
 

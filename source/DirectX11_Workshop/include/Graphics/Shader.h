@@ -6,53 +6,20 @@ class Shader
 {
 private:
 	D3D11_SHADER_VERSION_TYPE m_shaderType;
+	union
+	{
+		ID3D11VertexShader*   m_vertexShader;
+		ID3D11PixelShader*    m_pixelShader;
+		ID3D11GeometryShader* m_geometryShader;
+		ID3D11ComputeShader*  m_computeShader;
+	};
 
 public:
 	Shader();
-	Shader(D3D11_SHADER_VERSION_TYPE shaderType);
+	Shader(ID3D11VertexShader*);
+	Shader(ID3D11PixelShader*);
+	Shader(ID3D11GeometryShader*);
+	Shader(ID3D11ComputeShader*);
 	virtual ~Shader();
 };
 
-
-
-class VertexShader : public Shader
-{
-	ComPtr<ID3D11VertexShader> m_shader;
-
-public:
-	VertexShader(ComPtr<ID3D11VertexShader>);
-	virtual ~VertexShader();
-};
-
-
-
-class PixelShader : public Shader
-{
-	ComPtr<ID3D11PixelShader> m_shader;
-
-public:
-	PixelShader(ComPtr<ID3D11PixelShader>);
-	virtual ~PixelShader();
-};
-
-
-
-class GeometryShader : public Shader
-{
-	ComPtr<ID3D11GeometryShader> m_shader;
-
-public:
-	GeometryShader(ComPtr<ID3D11GeometryShader>);
-	virtual ~GeometryShader();
-};
-
-
-
-class ComputeShader : public Shader
-{
-	ComPtr<ID3D11ComputeShader> m_shader;
-
-public:
-	ComputeShader(ComPtr<ID3D11ComputeShader>);
-	virtual ~ComputeShader();
-};

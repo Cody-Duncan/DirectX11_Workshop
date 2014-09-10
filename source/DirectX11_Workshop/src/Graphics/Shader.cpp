@@ -3,51 +3,42 @@
 Shader::Shader()
 {}
 
-Shader::Shader(D3D11_SHADER_VERSION_TYPE shaderType) 
-	: m_shaderType(shaderType)
-{
+Shader::Shader(ID3D11VertexShader* pShader) : 
+	m_shaderType(D3D11_SHADER_VERSION_TYPE::D3D11_SHVER_VERTEX_SHADER),
+	m_vertexShader(pShader)
 
-}
+{}
+
+Shader::Shader(ID3D11PixelShader* pShader) :
+	m_shaderType(D3D11_SHADER_VERSION_TYPE::D3D11_SHVER_PIXEL_SHADER),
+	m_pixelShader(pShader)
+{}
+
+Shader::Shader(ID3D11GeometryShader* pShader) :
+	m_shaderType(D3D11_SHADER_VERSION_TYPE::D3D11_SHVER_GEOMETRY_SHADER),
+	m_geometryShader(pShader)
+{}
+
+Shader::Shader(ID3D11ComputeShader* pShader) : 
+	m_shaderType(D3D11_SHADER_VERSION_TYPE::D3D11_SHVER_COMPUTE_SHADER),
+	m_computeShader(pShader)
+{}
 
 Shader::~Shader()
-{}
+{
+	switch (m_shaderType)
+	{
+		case D3D11_SHVER_PIXEL_SHADER:    m_pixelShader->Release();    break;
+		case D3D11_SHVER_VERTEX_SHADER:   m_vertexShader->Release();   break;
+		case D3D11_SHVER_GEOMETRY_SHADER: m_geometryShader->Release(); break;
+		case D3D11_SHVER_COMPUTE_SHADER:  m_computeShader->Release();  break;
+
+		case D3D11_SHVER_HULL_SHADER:
+		case D3D11_SHVER_DOMAIN_SHADER:
+		case D3D11_SHVER_RESERVED0:
+		default:
+			break;
+	}
+}
 
 
-
-VertexShader::VertexShader(ComPtr<ID3D11VertexShader> shader) : 
-	Shader(D3D11_SHVER_VERTEX_SHADER),
-	m_shader(shader)
-{}
-
-VertexShader::~VertexShader()
-{}
-
-
-
-PixelShader::PixelShader(ComPtr<ID3D11PixelShader> shader) :
-	Shader(D3D11_SHVER_PIXEL_SHADER),
-	m_shader(shader)
-{}
-
-PixelShader::~PixelShader()
-{}
-
-
-
-GeometryShader::GeometryShader(ComPtr<ID3D11GeometryShader> shader) :
-	Shader(D3D11_SHVER_GEOMETRY_SHADER),
-	m_shader(shader)
-{}
-
-GeometryShader::~GeometryShader()
-{}
-
-
-
-ComputeShader::ComputeShader(ComPtr<ID3D11ComputeShader> shader) :
-	Shader(D3D11_SHVER_COMPUTE_SHADER),
-	m_shader(shader)
-{}
-
-ComputeShader::~ComputeShader()
-{}
