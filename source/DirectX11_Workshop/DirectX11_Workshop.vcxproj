@@ -61,6 +61,7 @@
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ComError.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -84,6 +85,7 @@
     <ClCompile Include="src\WindowInput\WindowSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ComError.h" />
     <ClInclude Include="src\WindowInput\InputState.h" />
     <ClInclude Include="src\WindowInput\RunningState.h" />
     <ClInclude Include="src\WindowInput\WindowGlobals.h" />

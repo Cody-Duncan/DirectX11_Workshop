@@ -1,5 +1,6 @@
 #include "Graphics\ShaderFactory.h"
 #include "String\StringAlgorithm.h"
+#include "ComError.h"
 #include <d3dcompiler.h>
 
 ShaderFactory::ShaderFactory(ID3D11Device* device) : 
@@ -168,12 +169,18 @@ D3D11_INPUT_ELEMENT_DESC defaultLayout[] =
 {
 	{ "POSITION" , 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0 , D3D11_INPUT_PER_VERTEX_DATA, 0 },
 	{ "NORMAL"   , 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 12, D3D11_INPUT_PER_VERTEX_DATA, 0 },
+	{ "TEXCOORD" , 0, DXGI_FORMAT_R32G32_FLOAT   , 0, 24, D3D11_INPUT_PER_VERTEX_DATA, 0 },
 };
 unsigned int defaultLayoutSize = sizeof(defaultLayout) / sizeof(defaultLayout[0]);
 
 HRESULT CreateInputLayoutDefault(ID3DBlob* pShaderBlob, ID3D11Device* pD3DDevice, ID3D11InputLayout** pInputLayout)
 {
 	HRESULT hr = pD3DDevice->CreateInputLayout(defaultLayout, defaultLayoutSize, pShaderBlob->GetBufferPointer(), pShaderBlob->GetBufferSize(), pInputLayout);
+	if (FAILED(hr))
+	{
+		const wchar_t* result = HresultGetMessage(hr);
+		ASSERT_DEBUG(SUCCEEDED(hr), "%ls", result);
+	}
 	return hr;
 }
 

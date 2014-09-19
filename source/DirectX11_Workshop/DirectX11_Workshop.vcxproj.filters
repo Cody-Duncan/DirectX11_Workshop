@@ -45,6 +45,9 @@
     <ClCompile Include="src\Graphics\GraphicsBuffers.cpp">
       <Filter>Graphics</Filter>
     </ClCompile>
+    <ClCompile Include="ComError.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Graphics">
@@ -130,6 +133,9 @@
     </ClInclude>
     <ClInclude Include="src\WindowInput\WindowSystem.h">
       <Filter>WindowAndInput</Filter>
+    </ClInclude>
+    <ClInclude Include="ComError.h">
+      <Filter>Graphics</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
