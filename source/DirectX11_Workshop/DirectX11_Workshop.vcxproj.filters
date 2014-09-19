@@ -30,9 +30,6 @@
     <ClCompile Include="src\Graphics\GraphicsSystem.cpp">
       <Filter>Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="include\Graphics\GraphicsBuffers.cpp">
-      <Filter>Graphics</Filter>
-    </ClCompile>
     <ClCompile Include="src\String\StringAlgorithm.cpp">
       <Filter>Strings</Filter>
     </ClCompile>
@@ -44,6 +41,9 @@
     </ClCompile>
     <ClCompile Include="src\Graphics\Geometry\GeometryGenerator.cpp">
       <Filter>Graphics\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Graphics\GraphicsBuffers.cpp">
+      <Filter>Graphics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -68,72 +68,72 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
-    <ClInclude Include="include\Debugging\AssertErrorLogFile.h">
+    <ClInclude Include="src\Debugging\DebugOutput.h">
       <Filter>Debugging</Filter>
     </ClInclude>
-    <ClInclude Include="include\Debugging\DebugOutput.h">
+    <ClInclude Include="src\Debugging\pempek_assert.h">
       <Filter>Debugging</Filter>
     </ClInclude>
-    <ClInclude Include="include\Debugging\pempek_assert.h">
-      <Filter>Debugging</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Graphics\ConstantBuffer.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Graphics\DirectX_GraphicsDevice.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Graphics\Vertex.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Timer\Stopwatch.h">
-      <Filter>Timer</Filter>
-    </ClInclude>
-    <ClInclude Include="include\WindowInput\InputState.h">
-      <Filter>WindowAndInput</Filter>
-    </ClInclude>
-    <ClInclude Include="include\WindowInput\RunningState.h">
-      <Filter>WindowAndInput</Filter>
-    </ClInclude>
-    <ClInclude Include="include\WindowInput\WindowGlobals.h">
-      <Filter>WindowAndInput</Filter>
-    </ClInclude>
-    <ClInclude Include="include\WindowInput\WindowInputInitializer.h">
-      <Filter>WindowAndInput</Filter>
-    </ClInclude>
-    <ClInclude Include="include\WindowInput\WindowSystem.h">
-      <Filter>WindowAndInput</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Debugging\AssertPem.h">
-      <Filter>Debugging</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Graphics\ComPtr.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Graphics\GraphicsSystem.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Graphics\ShaderFactory.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Graphics\Shader.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Graphics\GraphicsBuffers.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="include\String\StringAlgorithm.h">
-      <Filter>Strings</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Graphics\Geometry\GeometryGenerator.h">
+    <ClInclude Include="src\Graphics\Geometry\GeometryGenerator.h">
       <Filter>Graphics\Geometry</Filter>
     </ClInclude>
-    <ClInclude Include="include\Graphics\CreateBuffer.h">
+    <ClInclude Include="src\Graphics\ComPtr.h">
       <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Graphics\CreateBuffer.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Graphics\DirectX_GraphicsDevice.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Graphics\GraphicsBuffers.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Graphics\GraphicsSystem.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Graphics\Shader.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Graphics\ShaderFactory.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Graphics\Vertex.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="src\String\StringAlgorithm.h">
+      <Filter>Strings</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Timer\Stopwatch.h">
+      <Filter>Timer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Debugging\AssertPem.h">
+      <Filter>Debugging</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Debugging\AssertErrorLogFile.h">
+      <Filter>Debugging</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Graphics\ConstantBuffer.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="src\WindowInput\InputState.h">
+      <Filter>WindowAndInput</Filter>
+    </ClInclude>
+    <ClInclude Include="src\WindowInput\RunningState.h">
+      <Filter>WindowAndInput</Filter>
+    </ClInclude>
+    <ClInclude Include="src\WindowInput\WindowGlobals.h">
+      <Filter>WindowAndInput</Filter>
+    </ClInclude>
+    <ClInclude Include="src\WindowInput\WindowInputInitializer.h">
+      <Filter>WindowAndInput</Filter>
+    </ClInclude>
+    <ClInclude Include="src\WindowInput\WindowSystem.h">
+      <Filter>WindowAndInput</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="include\Graphics\Geometry\TeapotData.inc">
+    <None Include="src\Graphics\Geometry\TeapotData.inc">
       <Filter>Graphics\Geometry</Filter>
     </None>
   </ItemGroup>

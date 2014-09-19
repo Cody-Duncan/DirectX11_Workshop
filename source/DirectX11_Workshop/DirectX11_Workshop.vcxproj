@@ -49,13 +49,18 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile />
     <Link />
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)src;$(ProjectDir)include;$(SolutionDir)../lib/include</AdditionalIncludeDirectories>
+    </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile />
     <Link />
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)src;$(ProjectDir)include;$(SolutionDir)../lib/include</AdditionalIncludeDirectories>
+    </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="include\Graphics\GraphicsBuffers.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -66,6 +71,7 @@
     <ClCompile Include="src\Debugging\pempek_assert.cpp" />
     <ClCompile Include="src\Driver.cpp" />
     <ClCompile Include="src\Graphics\Geometry\GeometryGenerator.cpp" />
+    <ClCompile Include="src\Graphics\GraphicsBuffers.cpp" />
     <ClCompile Include="src\Graphics\GraphicsSystem.cpp" />
     <ClCompile Include="src\Graphics\Shader.cpp" />
     <ClCompile Include="src\Graphics\ShaderFactory.cpp" />
@@ -78,31 +84,31 @@
     <ClCompile Include="src\WindowInput\WindowSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\Debugging\AssertPem.h" />
-    <ClInclude Include="include\Debugging\AssertErrorLogFile.h" />
-    <ClInclude Include="include\Debugging\DebugOutput.h" />
-    <ClInclude Include="include\Debugging\pempek_assert.h" />
-    <ClInclude Include="include\Graphics\ComPtr.h" />
-    <ClInclude Include="include\Graphics\ConstantBuffer.h" />
-    <ClInclude Include="include\Graphics\CreateBuffer.h" />
-    <ClInclude Include="include\Graphics\DirectX_GraphicsDevice.h" />
-    <ClInclude Include="include\Graphics\Geometry\GeometryGenerator.h" />
-    <ClInclude Include="include\Graphics\GraphicsBuffers.h" />
-    <ClInclude Include="include\Graphics\GraphicsSystem.h" />
-    <ClInclude Include="include\Graphics\Shader.h" />
-    <ClInclude Include="include\Graphics\ShaderFactory.h" />
-    <ClInclude Include="include\Graphics\Vertex.h" />
-    <ClInclude Include="include\String\StringAlgorithm.h" />
-    <ClInclude Include="include\Timer\Stopwatch.h" />
-    <ClInclude Include="include\WindowInput\InputState.h" />
-    <ClInclude Include="include\WindowInput\RunningState.h" />
-    <ClInclude Include="include\WindowInput\WindowGlobals.h" />
-    <ClInclude Include="include\WindowInput\WindowInputInitializer.h" />
-    <ClInclude Include="include\WindowInput\WindowSystem.h" />
+    <ClInclude Include="src\WindowInput\InputState.h" />
+    <ClInclude Include="src\WindowInput\RunningState.h" />
+    <ClInclude Include="src\WindowInput\WindowGlobals.h" />
+    <ClInclude Include="src\WindowInput\WindowInputInitializer.h" />
+    <ClInclude Include="src\WindowInput\WindowSystem.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="src\Debugging\AssertErrorLogFile.h" />
+    <ClInclude Include="src\Debugging\AssertPem.h" />
+    <ClInclude Include="src\Debugging\DebugOutput.h" />
+    <ClInclude Include="src\Debugging\pempek_assert.h" />
+    <ClInclude Include="src\Graphics\ComPtr.h" />
+    <ClInclude Include="src\Graphics\ConstantBuffer.h" />
+    <ClInclude Include="src\Graphics\CreateBuffer.h" />
+    <ClInclude Include="src\Graphics\DirectX_GraphicsDevice.h" />
+    <ClInclude Include="src\Graphics\Geometry\GeometryGenerator.h" />
+    <ClInclude Include="src\Graphics\GraphicsBuffers.h" />
+    <ClInclude Include="src\Graphics\GraphicsSystem.h" />
+    <ClInclude Include="src\Graphics\Shader.h" />
+    <ClInclude Include="src\Graphics\ShaderFactory.h" />
+    <ClInclude Include="src\Graphics\Vertex.h" />
+    <ClInclude Include="src\String\StringAlgorithm.h" />
+    <ClInclude Include="src\Timer\Stopwatch.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="include\Graphics\Geometry\TeapotData.inc" />
+    <None Include="src\Graphics\Geometry\TeapotData.inc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
