@@ -99,7 +99,6 @@
     <ClInclude Include="src\Graphics\ComPtr.h" />
     <ClInclude Include="src\Graphics\ConstantBuffer.h" />
     <ClInclude Include="src\Graphics\CreateBuffer.h" />
-    <ClInclude Include="src\Graphics\DirectX_GraphicsDevice.h" />
     <ClInclude Include="src\Graphics\Geometry\GeometryGenerator.h" />
     <ClInclude Include="src\Graphics\GraphicsBuffers.h" />
     <ClInclude Include="src\Graphics\GraphicsSystem.h" />

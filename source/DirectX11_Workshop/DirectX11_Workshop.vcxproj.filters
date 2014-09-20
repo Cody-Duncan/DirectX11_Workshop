@@ -86,9 +86,6 @@
     <ClInclude Include="src\Graphics\CreateBuffer.h">
       <Filter>Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="src\Graphics\DirectX_GraphicsDevice.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
     <ClInclude Include="src\Graphics\GraphicsBuffers.h">
       <Filter>Graphics</Filter>
     </ClInclude>
