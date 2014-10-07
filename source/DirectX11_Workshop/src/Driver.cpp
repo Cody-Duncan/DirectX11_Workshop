@@ -9,8 +9,8 @@ int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLin
 	InitializeWindowAndInput("DirectX11 Interface Test", 1280, 720);
 	GraphicsSystem graphics;
 	graphics.Init(ghMainWnd);
-	graphics.LoadSourceShader("Shaders/VertexShader.hlsl", "main", "vs_5_0");
-	graphics.LoadSourceShader("Shaders/PixelShader.hlsl", "main", "ps_5_0");
+	graphics.LoadCompiledShader("VertexShader.cso", D3D11_SHADER_VERSION_TYPE::D3D11_SHVER_VERTEX_SHADER);
+	graphics.LoadCompiledShader("PixelShader.cso", D3D11_SHADER_VERSION_TYPE::D3D11_SHVER_PIXEL_SHADER);
 
 	StartRunning();
 	while(IsRunning())

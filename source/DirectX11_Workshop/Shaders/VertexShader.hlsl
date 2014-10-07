@@ -33,7 +33,7 @@ VS_OUTPUT main(VS_INPUT input)
 	float4 inputNormal = float4(input.normal, 0.0);
 
 	VS_OUTPUT output = (VS_OUTPUT)0;
-	output.Pos = mul(inputPos, WorldViewProjection);
+	output.Pos = mul(WorldViewProjection, inputPos);
 	output.TexCoord = input.texCoord;
 
 	return output;

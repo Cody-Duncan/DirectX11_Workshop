@@ -149,7 +149,7 @@ void GraphicsSystem::Init(HWND ghMainWnd)
 	shape_vertices = vertexBuffer;
 
 	ID3D11Buffer* indexBuffer;
-	CreateBuffer(m_device.Get(), shape.get()->m_Vertices, D3D11_BIND_FLAG::D3D11_BIND_INDEX_BUFFER, "Shape_Index_Buffer", &indexBuffer);
+	CreateBuffer(m_device.Get(), shape.get()->m_Indices, D3D11_BIND_FLAG::D3D11_BIND_INDEX_BUFFER, "Shape_Index_Buffer", &indexBuffer);
 	shape_indices = indexBuffer;
 }
 
@@ -215,6 +215,12 @@ int GraphicsSystem::OnResize()
 	m_deviceContext->OMSetRenderTargets(1, m_renderTargetView.GetAddressOf(), m_depthStencilView.Get());
 
 
+
+	//****************************** RENDER STATE ******************************//
+	m_deviceContext->RSSetState(m_commonStates->CullNone());
+
+
+
 	//****************************** CREATE VIEWPORT ******************************//
 	//Create Viewport
 	m_screenViewport.TopLeftX = 0.0f;
@@ -233,6 +239,12 @@ void GraphicsSystem::LoadCompiledShader(std::string shaderFilename, D3D11_SHADER
 {
 	Shader* shader = m_shaderFactory->BuildCompiledShader(shaderFilename, shaderType);
 	_SetShader(shader);
+
+	if (shaderType == D3D11_SHADER_VERSION_TYPE::D3D11_SHVER_VERTEX_SHADER)
+	{
+		Matrix m;
+		CreateConstantBuffer(m_device.Get(), m, D3D11_BIND_CONSTANT_BUFFER, "WorldCbuffer", shader_worldBuffer.GetAddressOf());
+	}
 }
 
 void GraphicsSystem::LoadSourceShader(std::string shaderFilename, std::string EntryPoint, std::string ShaderModel)
@@ -257,6 +269,19 @@ void GraphicsSystem::Update()
 	ASSERT_DEBUG(m_pVertexShader, "Vertex Shader is null.");
 	ASSERT_DEBUG(m_pVertexShader, "Pixel Shader is null.");
 
+	
+	Matrix world = Matrix::Identity();
+	Matrix view = Matrix::CreateLookAt(Vector3(3, 0, 1), Vector3(0, 0, 0), Vector3(0, 1, 0));
+	Matrix proj = Matrix::CreatePerspectiveFieldOfView(3.141590f / 3.0f, GetAspectRatio(), 1.0f, 1000.0f);
+	Matrix transform = world * view * proj;
+
+	D3D11_MAPPED_SUBRESOURCE resource;
+	ZeroMemory(&resource, sizeof(D3D11_MAPPED_SUBRESOURCE));
+	HRESULT hResult = m_deviceContext->Map(shader_worldBuffer.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &resource);
+		memcpy(resource.pData, &transform, sizeof(Matrix));
+	m_deviceContext->Unmap(shader_worldBuffer.Get(), 0);
+
+
 	//========== BEGIN DRAW PHASE ==========//
 	unsigned offset = 0;
 	unsigned stride = sizeof(DirectX::VertexPositionNormalTexture);
@@ -268,6 +293,7 @@ void GraphicsSystem::Update()
 
 	// -- Vertex Shader --
 	m_deviceContext->VSSetShader(m_pVertexShader->m_vertexShader, nullptr, 0);
+	m_deviceContext->VSSetConstantBuffers(0, 1, shader_worldBuffer.GetAddressOf());
 
 	// -- Pixel Shader --
 	m_deviceContext->PSSetShader(m_pPixelShader->m_pixelShader, nullptr, 0);
@@ -279,7 +305,7 @@ void GraphicsSystem::Update()
 	//========== DRAW PHASE ==========//
 	ClearRenderTarget();
 
-	//this->m_deviceContext->DrawIndexed(model->mesh->NumIndices, model->CommonIndexBufferOffset, model->CommonVertexBufferOffset);
+	this->m_deviceContext->DrawIndexed(shape->m_Indices.size(), 0, 0);
 
 	//========== END DRAW PHASE ==========//
 	SwapBuffers();

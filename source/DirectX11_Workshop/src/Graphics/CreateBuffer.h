@@ -24,3 +24,26 @@ void CreateBuffer(ID3D11Device* device, T const& data, D3D11_BIND_FLAG bindFlags
 
 	DirectX::SetDebugObjectName(*pBuffer, debugName);
 }
+
+
+// Helper for creating a D3D vertex or index buffer.
+template<typename T, unsigned TNameLength>
+void CreateConstantBuffer(ID3D11Device* device, T const& data, D3D11_BIND_FLAG bindFlags, const char(&debugName)[TNameLength], ID3D11Buffer** pBuffer)
+{
+	ASSERT_DEBUG(pBuffer != 0, "Output parameter 'pBuffer' is null");
+
+	D3D11_BUFFER_DESC bufferDesc = { 0 };
+	bufferDesc.ByteWidth = (UINT)sizeof(T);
+	bufferDesc.BindFlags = bindFlags;
+	bufferDesc.Usage = D3D11_USAGE_DYNAMIC;
+	bufferDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
+	bufferDesc.MiscFlags = 0;
+
+	D3D11_SUBRESOURCE_DATA dataDesc = { 0 };
+	dataDesc.pSysMem = &data;
+
+	HRESULT hr = device->CreateBuffer(&bufferDesc, &dataDesc, pBuffer);
+	ASSERT_DEBUG(SUCCEEDED(hr), "Failed to create Buffer");
+
+	DirectX::SetDebugObjectName(*pBuffer, debugName);
+}

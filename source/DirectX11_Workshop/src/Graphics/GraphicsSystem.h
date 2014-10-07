@@ -67,6 +67,8 @@ private:
 	std::unique_ptr<Geometry> shape;
 	ComPtr<ID3D11Buffer> shape_vertices;
 	ComPtr<ID3D11Buffer> shape_indices;
+	ComPtr<ID3D11Buffer> shader_worldBuffer;
 
 	void _SetShader(Shader* shader);
+	float GetAspectRatio() { return (float)m_Window_Width / (float)m_Window_Height; }
 };
