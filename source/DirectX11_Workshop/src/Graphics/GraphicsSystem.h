@@ -25,6 +25,7 @@ public:
 
 	void LoadCompiledShader(std::string shaderFilename, D3D11_SHADER_VERSION_TYPE shaderType);
 	void LoadSourceShader(std::string shaderFilename, std::string EntryPoint, std::string ShaderModel);
+	void LoadTexture(std::string filename);
 	
 private:
 	
@@ -68,6 +69,9 @@ private:
 	ComPtr<ID3D11Buffer> shape_vertices;
 	ComPtr<ID3D11Buffer> shape_indices;
 	ComPtr<ID3D11Buffer> shader_worldBuffer;
+
+	ComPtr<ID3D11Texture2D> m_texture;
+	ComPtr<ID3D11ShaderResourceView> m_textureView;
 
 	void _SetShader(Shader* shader);
 	float GetAspectRatio() { return (float)m_Window_Width / (float)m_Window_Height; }

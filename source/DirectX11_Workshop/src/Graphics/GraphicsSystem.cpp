@@ -2,6 +2,7 @@
 #include <memory>	                 // shared_ptr 
 #include "Graphics\Geometry\GeometryGenerator.h"
 #include "Graphics\CreateBuffer.h"
+#include "DXTK\WICTextureLoader.h"
 
 GraphicsSystem::GraphicsSystem() 
 {
@@ -245,6 +246,11 @@ void GraphicsSystem::LoadCompiledShader(std::string shaderFilename, D3D11_SHADER
 		Matrix m;
 		CreateConstantBuffer(m_device.Get(), m, D3D11_BIND_CONSTANT_BUFFER, "WorldCbuffer", shader_worldBuffer.GetAddressOf());
 	}
+
+	if (shaderType == D3D11_SHADER_VERSION_TYPE::D3D11_SHVER_PIXEL_SHADER)
+	{
+
+	}
 }
 
 void GraphicsSystem::LoadSourceShader(std::string shaderFilename, std::string EntryPoint, std::string ShaderModel)
@@ -257,6 +263,13 @@ void GraphicsSystem::ClearRenderTarget()
 {
 	m_deviceContext->ClearRenderTargetView(m_renderTargetView.Get(), (float*)&m_ClearColor);
 	m_deviceContext->ClearDepthStencilView(m_depthStencilView.Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
+}
+
+void GraphicsSystem::LoadTexture(std::string filename)
+{
+	std::wstring wfilename(filename.begin(), filename.end());
+	HRESULT hr = DirectX::CreateWICTextureFromFile(m_device.Get(), wfilename.c_str(), (ID3D11Resource**)m_texture.GetAddressOf(), m_textureView.GetAddressOf());
+	ASSERT_DEBUG(SUCCEEDED(hr));
 }
 
 void GraphicsSystem::Update()
@@ -297,6 +310,9 @@ void GraphicsSystem::Update()
 
 	// -- Pixel Shader --
 	m_deviceContext->PSSetShader(m_pPixelShader->m_pixelShader, nullptr, 0);
+	m_deviceContext->PSSetShaderResources(0, 1, m_textureView.GetAddressOf());
+	ID3D11SamplerState* sampler = m_commonStates->AnisotropicWrap();
+	m_deviceContext->PSSetSamplers(0, 1, &sampler);
 
 	// -- Output Merger --
 	float blendFactor[4] = {0.0f, 0.0f, 0.0f, 0.0f};

@@ -19,5 +19,5 @@ struct PS_INPUT
 float4 main(PS_INPUT vsOutput) : SV_Target
 {
 	float2 texCoord = vsOutput.TexCoord;
-	return float4(1,1,1,1);//txDiffuse.Sample(samLinear, texCoord);
+	return txDiffuse.Sample(samLinear, texCoord);
 }
