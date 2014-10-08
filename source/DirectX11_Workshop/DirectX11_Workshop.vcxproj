@@ -53,8 +53,13 @@
       <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)src;$(ProjectDir)include;$(SolutionDir)../lib/include</AdditionalIncludeDirectories>
     </ClCompile>
     <PostBuildEvent>
-      <Command>xcopy $(SolutionDir)..\Textures $(OutDir)Textures\  /E /Y /D</Command>
+      <Command>xcopy $(SolutionDir)..\Textures $(OutDir)Textures\  /E /Y /D
+xcopy $(SolutionDir)..\lib\*.dll $(OutDir)/Y /D</Command>
     </PostBuildEvent>
+    <Link>
+      <AdditionalDependencies>d3d11.lib;dxgi.lib;d3dcompiler.lib;DXTK_Lib/x86/DirectXTKd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)../lib;</AdditionalLibraryDirectories>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile />
@@ -63,8 +68,13 @@
       <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)src;$(ProjectDir)include;$(SolutionDir)../lib/include</AdditionalIncludeDirectories>
     </ClCompile>
     <PostBuildEvent>
-      <Command>xcopy $(SolutionDir)..\Textures $(OutDir)Textures\  /E /Y /D</Command>
+      <Command>xcopy $(SolutionDir)..\Textures $(OutDir)Textures\  /E /Y /D
+xcopy $(SolutionDir)..\lib\*.dll $(OutDir)/Y /D</Command>
     </PostBuildEvent>
+    <Link>
+      <AdditionalDependencies>d3d11.lib;dxgi.lib;d3dcompiler.lib;DXTK_Lib/x86/DirectXTK.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)../lib;</AdditionalLibraryDirectories>
+    </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ComError.cpp" />
