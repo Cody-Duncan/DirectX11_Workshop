@@ -1,6 +1,5 @@
 #include "Graphics\ShaderFactory.h"
 #include "String\StringAlgorithm.h"
-#include "ComError.h"
 #include <d3dcompiler.h>
 
 ShaderFactory::ShaderFactory(ID3D11Device* device) : 
@@ -178,11 +177,7 @@ unsigned int defaultLayoutSize = sizeof(defaultLayout) / sizeof(defaultLayout[0]
 HRESULT CreateInputLayoutDefault(ID3DBlob* pShaderBlob, ID3D11Device* pD3DDevice, ID3D11InputLayout** pInputLayout)
 {
 	HRESULT hr = pD3DDevice->CreateInputLayout(defaultLayout, defaultLayoutSize, pShaderBlob->GetBufferPointer(), pShaderBlob->GetBufferSize(), pInputLayout);
-	if (FAILED(hr))
-	{
-		const wchar_t* result = HresultGetMessage(hr);
-		ASSERT_DEBUG(SUCCEEDED(hr), "%ls", result);
-	}
+	ASSERT_DEBUG(SUCCEEDED(hr), "Failed to create input layout");
 	return hr;
 }
 
