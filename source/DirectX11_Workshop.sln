@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DirectX11_Workshop", "DirectX11_Workshop\DirectX11_Workshop.vcxproj", "{7A32AAF5-2C56-4CCB-9187-2D83D9D10F5A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A0E0E2EA-4F8C-4718-8A35-F99D7337A678} = {A0E0E2EA-4F8C-4718-8A35-F99D7337A678}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Shaders", "Shaders\Shaders.vcxproj", "{A0E0E2EA-4F8C-4718-8A35-F99D7337A678}"
 EndProject
