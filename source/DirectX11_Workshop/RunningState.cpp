@@ -1,4 +1,4 @@
-#include "WindowInput\RunningState.h"
+#include "RunningState.h"
 
 bool IsRunningBool = false;
 

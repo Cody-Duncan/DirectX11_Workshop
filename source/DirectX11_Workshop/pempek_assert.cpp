@@ -10,8 +10,8 @@
 #include <windows.h>
 #endif
 
-#include "Debugging/AssertErrorLogFile.h"
-#include "Debugging/pempek_assert.h"
+#include "AssertErrorLogFile.h"
+#include "pempek_assert.h"
 
 #include <cstdio>  // fprintf() and vsnprintf()
 #include <cstring>
@@ -29,7 +29,7 @@
 #endif
 #endif
 
-#include "Debugging/AssertErrorLogFile.h"
+#include "AssertErrorLogFile.h"
 // Overriding the default, See AssertErrorLogFile.h
   //#define PPK_ASSERT_LOG_FILE "/tmp/assert.txt"
   //#define PPK_ASSERT_LOG_FILE_TRUNCATE

@@ -1,7 +1,7 @@
 
-#include "WindowInput\WindowSystem.h"
-#include "WindowInput\WindowGlobals.h"
-#include "WindowInput\RunningState.h"
+#include "WindowSystem.h"
+#include "WindowGlobals.h"
+#include "RunningState.h"
 #include <tchar.h>
 
 

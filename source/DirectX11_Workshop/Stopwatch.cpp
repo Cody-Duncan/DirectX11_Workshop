@@ -1,5 +1,5 @@
 
-#include "Timer\Stopwatch.h"
+#include "Stopwatch.h"
 
 
 Stopwatch::Stopwatch(bool singleThread) : m_startCount(), m_elapsedTime(0)

@@ -1,52 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="pch.cpp" />
-    <ClCompile Include="src\Debugging\DebugOutput.cpp">
-      <Filter>Debugging</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Debugging\pempek_assert.cpp">
-      <Filter>Debugging</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Timer\Stopwatch.cpp">
-      <Filter>Timer</Filter>
-    </ClCompile>
-    <ClCompile Include="src\WindowInput\InputState.cpp">
-      <Filter>WindowAndInput</Filter>
-    </ClCompile>
-    <ClCompile Include="src\WindowInput\RunningState.cpp">
-      <Filter>WindowAndInput</Filter>
-    </ClCompile>
-    <ClCompile Include="src\WindowInput\WindowGlobals.cpp">
-      <Filter>WindowAndInput</Filter>
-    </ClCompile>
-    <ClCompile Include="src\WindowInput\WindowInputInitializer.cpp">
-      <Filter>WindowAndInput</Filter>
-    </ClCompile>
-    <ClCompile Include="src\WindowInput\WindowSystem.cpp">
-      <Filter>WindowAndInput</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Driver.cpp" />
-    <ClCompile Include="src\Graphics\GraphicsSystem.cpp">
-      <Filter>Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="src\String\StringAlgorithm.cpp">
-      <Filter>Strings</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Graphics\ShaderFactory.cpp">
-      <Filter>Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Graphics\Shader.cpp">
-      <Filter>Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Graphics\Geometry\GeometryGenerator.cpp">
-      <Filter>Graphics\Geometry</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Graphics\GraphicsBuffers.cpp">
-      <Filter>Graphics</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
     <Filter Include="Graphics">
       <UniqueIdentifier>{122367c5-2397-427c-927a-e8bfa142bcc9}</UniqueIdentifier>
     </Filter>
@@ -67,75 +21,78 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="pch.h" />
-    <ClInclude Include="src\Debugging\DebugOutput.h">
+    <ClInclude Include="AssertErrorLogFile.h">
       <Filter>Debugging</Filter>
     </ClInclude>
-    <ClInclude Include="src\Debugging\pempek_assert.h">
+    <ClInclude Include="AssertPem.h">
       <Filter>Debugging</Filter>
     </ClInclude>
-    <ClInclude Include="src\Graphics\Geometry\GeometryGenerator.h">
+    <ClInclude Include="pempek_assert.h">
+      <Filter>Debugging</Filter>
+    </ClInclude>
+    <ClInclude Include="GeometryGenerator.h">
       <Filter>Graphics\Geometry</Filter>
     </ClInclude>
-    <ClInclude Include="src\Graphics\ComPtr.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Graphics\CreateBuffer.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Graphics\GraphicsBuffers.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Graphics\GraphicsSystem.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Graphics\Shader.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Graphics\ShaderFactory.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Graphics\Vertex.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="src\String\StringAlgorithm.h">
+    <ClInclude Include="StringAlgorithm.h">
       <Filter>Strings</Filter>
     </ClInclude>
-    <ClInclude Include="src\Timer\Stopwatch.h">
+    <ClInclude Include="Stopwatch.h">
       <Filter>Timer</Filter>
     </ClInclude>
-    <ClInclude Include="src\Debugging\AssertPem.h">
-      <Filter>Debugging</Filter>
+    <ClInclude Include="InputState.h">
+      <Filter>WindowAndInput</Filter>
     </ClInclude>
-    <ClInclude Include="src\Debugging\AssertErrorLogFile.h">
-      <Filter>Debugging</Filter>
+    <ClInclude Include="RunningState.h">
+      <Filter>WindowAndInput</Filter>
     </ClInclude>
-    <ClInclude Include="src\Graphics\ConstantBuffer.h">
+    <ClInclude Include="WindowGlobals.h">
+      <Filter>WindowAndInput</Filter>
+    </ClInclude>
+    <ClInclude Include="WindowInputInitializer.h">
+      <Filter>WindowAndInput</Filter>
+    </ClInclude>
+    <ClInclude Include="WindowSystem.h">
+      <Filter>WindowAndInput</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="ComPtr.h">
       <Filter>Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="src\WindowInput\InputState.h">
-      <Filter>WindowAndInput</Filter>
-    </ClInclude>
-    <ClInclude Include="src\WindowInput\RunningState.h">
-      <Filter>WindowAndInput</Filter>
-    </ClInclude>
-    <ClInclude Include="src\WindowInput\WindowGlobals.h">
-      <Filter>WindowAndInput</Filter>
-    </ClInclude>
-    <ClInclude Include="src\WindowInput\WindowInputInitializer.h">
-      <Filter>WindowAndInput</Filter>
-    </ClInclude>
-    <ClInclude Include="src\WindowInput\WindowSystem.h">
-      <Filter>WindowAndInput</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="src\Graphics\Geometry\TeapotData.inc">
+    <ClCompile Include="pempek_assert.cpp">
+      <Filter>Debugging</Filter>
+    </ClCompile>
+    <ClCompile Include="GeometryGenerator.cpp">
+      <Filter>Graphics\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="StringAlgorithm.cpp">
+      <Filter>Strings</Filter>
+    </ClCompile>
+    <ClCompile Include="Stopwatch.cpp">
+      <Filter>Timer</Filter>
+    </ClCompile>
+    <ClCompile Include="InputState.cpp">
+      <Filter>WindowAndInput</Filter>
+    </ClCompile>
+    <ClCompile Include="RunningState.cpp">
+      <Filter>WindowAndInput</Filter>
+    </ClCompile>
+    <ClCompile Include="WindowGlobals.cpp">
+      <Filter>WindowAndInput</Filter>
+    </ClCompile>
+    <ClCompile Include="WindowInputInitializer.cpp">
+      <Filter>WindowAndInput</Filter>
+    </ClCompile>
+    <ClCompile Include="WindowSystem.cpp">
+      <Filter>WindowAndInput</Filter>
+    </ClCompile>
+    <ClCompile Include="Driver.cpp" />
+    <ClCompile Include="pch.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="TeapotData.inc">
       <Filter>Graphics\Geometry</Filter>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <FxCompile Include="Shaders\PixelShader.hlsl" />
-    <FxCompile Include="Shaders\VertexShader.hlsl" />
   </ItemGroup>
 </Project>

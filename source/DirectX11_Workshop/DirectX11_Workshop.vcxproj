@@ -10,6 +10,40 @@
       <Platform>Win32</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AssertErrorLogFile.h" />
+    <ClInclude Include="AssertPem.h" />
+    <ClInclude Include="ComPtr.h" />
+    <ClInclude Include="GeometryGenerator.h" />
+    <ClInclude Include="InputState.h" />
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="pempek_assert.h" />
+    <ClInclude Include="RunningState.h" />
+    <ClInclude Include="Stopwatch.h" />
+    <ClInclude Include="StringAlgorithm.h" />
+    <ClInclude Include="WindowGlobals.h" />
+    <ClInclude Include="WindowInputInitializer.h" />
+    <ClInclude Include="WindowSystem.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Driver.cpp" />
+    <ClCompile Include="GeometryGenerator.cpp" />
+    <ClCompile Include="InputState.cpp" />
+    <ClCompile Include="pch.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="pempek_assert.cpp" />
+    <ClCompile Include="RunningState.cpp" />
+    <ClCompile Include="Stopwatch.cpp" />
+    <ClCompile Include="StringAlgorithm.cpp" />
+    <ClCompile Include="WindowGlobals.cpp" />
+    <ClCompile Include="WindowInputInitializer.cpp" />
+    <ClCompile Include="WindowSystem.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="TeapotData.inc" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{7A32AAF5-2C56-4CCB-9187-2D83D9D10F5A}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
@@ -76,71 +110,6 @@ xcopy $(SolutionDir)..\lib\*.dll $(OutDir)/Y /D</Command>
       <AdditionalLibraryDirectories>$(SolutionDir)../lib;</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="pch.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </ForcedIncludeFiles>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="src\Debugging\DebugOutput.cpp" />
-    <ClCompile Include="src\Debugging\pempek_assert.cpp" />
-    <ClCompile Include="src\Driver.cpp" />
-    <ClCompile Include="src\Graphics\Geometry\GeometryGenerator.cpp" />
-    <ClCompile Include="src\Graphics\GraphicsBuffers.cpp" />
-    <ClCompile Include="src\Graphics\GraphicsSystem.cpp" />
-    <ClCompile Include="src\Graphics\Shader.cpp" />
-    <ClCompile Include="src\Graphics\ShaderFactory.cpp" />
-    <ClCompile Include="src\String\StringAlgorithm.cpp" />
-    <ClCompile Include="src\Timer\Stopwatch.cpp" />
-    <ClCompile Include="src\WindowInput\InputState.cpp" />
-    <ClCompile Include="src\WindowInput\RunningState.cpp" />
-    <ClCompile Include="src\WindowInput\WindowGlobals.cpp" />
-    <ClCompile Include="src\WindowInput\WindowInputInitializer.cpp" />
-    <ClCompile Include="src\WindowInput\WindowSystem.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="src\WindowInput\InputState.h" />
-    <ClInclude Include="src\WindowInput\RunningState.h" />
-    <ClInclude Include="src\WindowInput\WindowGlobals.h" />
-    <ClInclude Include="src\WindowInput\WindowInputInitializer.h" />
-    <ClInclude Include="src\WindowInput\WindowSystem.h" />
-    <ClInclude Include="pch.h" />
-    <ClInclude Include="src\Debugging\AssertErrorLogFile.h" />
-    <ClInclude Include="src\Debugging\AssertPem.h" />
-    <ClInclude Include="src\Debugging\DebugOutput.h" />
-    <ClInclude Include="src\Debugging\pempek_assert.h" />
-    <ClInclude Include="src\Graphics\ComPtr.h" />
-    <ClInclude Include="src\Graphics\ConstantBuffer.h" />
-    <ClInclude Include="src\Graphics\CreateBuffer.h" />
-    <ClInclude Include="src\Graphics\Geometry\GeometryGenerator.h" />
-    <ClInclude Include="src\Graphics\GraphicsBuffers.h" />
-    <ClInclude Include="src\Graphics\GraphicsSystem.h" />
-    <ClInclude Include="src\Graphics\Shader.h" />
-    <ClInclude Include="src\Graphics\ShaderFactory.h" />
-    <ClInclude Include="src\Graphics\Vertex.h" />
-    <ClInclude Include="src\String\StringAlgorithm.h" />
-    <ClInclude Include="src\Timer\Stopwatch.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="src\Graphics\Geometry\TeapotData.inc" />
-  </ItemGroup>
-  <ItemGroup>
-    <FxCompile Include="Shaders\PixelShader.hlsl">
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">5.0</ShaderModel>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">5.0</ShaderModel>
-      <EnableDebuggingInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</EnableDebuggingInformation>
-    </FxCompile>
-    <FxCompile Include="Shaders\VertexShader.hlsl">
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">5.0</ShaderModel>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">5.0</ShaderModel>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
-      <EnableDebuggingInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</EnableDebuggingInformation>
-    </FxCompile>
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

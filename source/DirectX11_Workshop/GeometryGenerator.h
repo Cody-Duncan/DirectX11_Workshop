@@ -1,5 +1,8 @@
 #pragma once
 
+#include "DXTK\VertexTypes.h"                      //VertexPositionNormalTexture
+#include <vector>
+
 class Geometry
 {
 public:

@@ -1,4 +1,4 @@
-#include "Graphics\Geometry\GeometryGenerator.h"
+#include "GeometryGenerator.h"
 #include "DXTK\Bezier.h"                           //Bezier
 #include <DirectXMath.h>						   //XMVECTOR
 
@@ -168,7 +168,7 @@ std::unique_ptr<Geometry> GeometryGenerator::CreateSphere(float diameter, size_t
 // Include the teapot control point data.
 namespace
 {
-	#include "Graphics\Geometry\TeapotData.inc"
+	#include "TeapotData.inc"
 }
 
 // Tessellates the specified bezier patch.

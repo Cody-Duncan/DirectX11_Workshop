@@ -1,4 +1,4 @@
-#include "WindowInput\WindowInputInitializer.h"
+#include "WindowInputInitializer.h"
 
 
 void InitializeWindowAndInput(const char* windowTitle, int width, int height)

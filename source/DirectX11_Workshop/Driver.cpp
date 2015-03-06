@@ -1,8 +1,8 @@
 #include <Windows.h>
-#include "WindowInput\WindowGlobals.h"
-#include "WindowInput\WindowInputInitializer.h"
-#include "WindowInput\RunningState.h"
-#include "Graphics\GraphicsSystem.h"
+#include "WindowGlobals.h"
+#include "WindowInputInitializer.h"
+#include "RunningState.h"
+//#include "GraphicsSystem.h"
 
 /* 
 	Note: A Message like "The application was unable to start correctly (0xc000007b). Click Ok to close the application." means that it cannot
@@ -32,20 +32,20 @@ int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLin
 	hr = CoInitializeEx(0, COINIT_APARTMENTTHREADED);
 	
 	InitializeWindowAndInput("DirectX11 Interface Test", 1280, 720);
-	GraphicsSystem graphics;
-	graphics.Init(ghMainWnd);
-	graphics.LoadCompiledShader("VertexShader.cso", D3D11_SHADER_VERSION_TYPE::D3D11_SHVER_VERTEX_SHADER);
-	graphics.LoadCompiledShader("PixelShader.cso", D3D11_SHADER_VERSION_TYPE::D3D11_SHVER_PIXEL_SHADER);
-	graphics.LoadTexture("Textures/teapot_texture.png");
+	//GraphicsSystem graphics;
+	//graphics.Init(ghMainWnd);
+	//graphics.LoadCompiledShader("VertexShader.cso", D3D11_SHADER_VERSION_TYPE::D3D11_SHVER_VERTEX_SHADER);
+	//graphics.LoadCompiledShader("PixelShader.cso", D3D11_SHADER_VERSION_TYPE::D3D11_SHVER_PIXEL_SHADER);
+	//graphics.LoadTexture("Textures/teapot_texture.png");
 
 	StartRunning();
 	while(IsRunning())
 	{
 		UpdateWindowAndInput();
-		graphics.Update();
+		//graphics.Update();
 	}
 
-	graphics.DeInit();
+	//graphics.DeInit();
 
 	CoUninitialize();
 	

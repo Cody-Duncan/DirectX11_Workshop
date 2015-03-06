@@ -1,4 +1,4 @@
-#include "WindowInput\WindowGlobals.h"
+#include "WindowGlobals.h"
 
 HWND ghMainWnd;
 HINSTANCE ghInstance;
